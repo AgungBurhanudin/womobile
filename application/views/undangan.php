@@ -14,7 +14,12 @@
                 if (!empty($undangan)) {
                     foreach ($undangan as $val) {
                         ?>
-                        <li><a href="#" data-transition="slidefade" class="ui-link"><span><img src="<?= base_url() ?>assets/images/icons/black/user.png" alt="" title="">&nbsp;&nbsp;<?= $val->nama ?></span></a></li>
+                        <li>
+                            <a href="#" data-transition="slidefade" class="ui-link">
+                                <span><img src="<?= base_url() ?>assets/images/icons/black/user.png" alt="" title="">&nbsp;&nbsp;<?= $val->nama ?></span></a>
+                            <div class="view_more"><a href="<?= base_url() ?>Undangan/delete?id=<?= $val->id ?>" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')" data-transition="slidedown" class="ui-link"><img src="<?= base_url() ?>assets/images/icons/black/menu_close.png" alt="" title="Delete Undangan"></a>
+                            </div>
+                        </li>
                         <?php
                     }
                 } else {
@@ -22,6 +27,12 @@
                 }
                 ?>
             </ul>
+            <div class="clear"></div>
+            <div id="loadMore">
+                <a href="<?= base_url() ?>Undangan/addUndangan">
+                    <img src="<?= base_url() ?>assets/images/load_posts.png" alt="" title="">
+                </a>
+            </div>
         </div>
     </div>
 </div>

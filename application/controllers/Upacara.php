@@ -37,6 +37,7 @@ class Upacara extends CI_Controller {
                                         wedding_upacara a
                                         LEFT JOIN upacara_tipe b ON a.id_upacara_tipe = b.id 
                                         LEFT JOIN upacara_tipe c ON b.id_upacara = c.id 
+                                WHERE a.id_wedding = '$id'
                                 GROUP BY
                                         b.id_upacara 
                                 ORDER BY
@@ -49,6 +50,7 @@ class Upacara extends CI_Controller {
                         FROM
                                 wedding_upacara a
                                 LEFT JOIN upacara_tipe b ON a.id_upacara_tipe = b.id 
+                        WHERE a.id_wedding = '$id'
                         ORDER BY
                                 a.urutan ASC")->result()
         );

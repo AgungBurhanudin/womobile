@@ -6,7 +6,16 @@
             <a href="<?= base_url() ?>Dashboard" data-rel="back" class="ui-link"><img src="<?= base_url() ?>assets/images/icons/black/menu_close.png" alt="" title="" height="30px"></a>
         </div>
         <div class="page_content"> 
-            This page under maintenance
+            <?php
+            if ($layout->layout == "") {
+                echo "Layout belum di upload";
+            } else {
+                ?>
+                <img src="<?= base_url() ?>../files/images/<?= $layout->layout ?>" width="100%">
+                <?php
+            }
+            ?>
+
         </div>
     </div>
 </div>

@@ -24,9 +24,10 @@ class Login extends CI_Controller {
         $reply['tipe'] = 'LOGIN';
         $reply['interface'] = 'WEB';
         $post = $_POST;
-
-        $sql = "SELECT * FROM app_user WHERE user_user_name = '" . $post['username'] . "';";
-        // echo $sql;
+        //print_r($_POST);
+        $username = isset($_POST['username']) ? $_POST['username'] : "";
+        $sql = "SELECT * FROM app_user WHERE user_user_name = '" . $username . "';";
+        //echo $sql;
         $arr_cek = $this->db->query($sql)->row();
 
         if (isset($arr_cek->user_id)) {
@@ -62,10 +63,13 @@ class Login extends CI_Controller {
 
                     $this->session->set_userdata($reply);
                     $strSqlUpLogin = "update app_user set user_token = '" . $reply['auth']['token'] . "', last_used = now(), ip = '$this->ip', status = 1,"
-                            . "appid = '$aplikasiid_add', salah_pin = 0 where user_id = '$noid' and user_real_name = '" . $post['username'] . "'";
-
+                            . "appid = '$aplikasiid_add', salah_pin = 0 where user_id = '$noid'";
+                    //echo $strSqlUpLogin;
                     $this->db->query($strSqlUpLogin);
-                    redirect(base_url() . 'Dashboard');
+                    $reply['code'] = '200';
+                    $reply['message'] = 'Berhasill Login';
+//                    $this->load->view('login', $reply);
+//                    redirect(base_url() . 'Dashboard');
 //                exit();
                 } else {
                     $reply['code'] = '401';
@@ -80,7 +84,7 @@ class Login extends CI_Controller {
             $this->load->view('login', $reply);
 //            exit();
         }
-//        echo json_encode($reply);
+        echo json_encode($reply);
     }
 
     public function logout() {

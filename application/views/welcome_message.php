@@ -7,10 +7,10 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon" href="<?= base_url() ?>assets/images/apple-touch-icon.png" />
         <link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" href="<?= base_url() ?>assets/images/apple-touch-startup-image-640x1096.png">
-        <meta name="author" content="SINDEVO.COM" />
-        <meta name="description" content="biotic - mobile and tablet web app template" />
-        <meta name="keywords" content="mobile css template, mobile html template, jquery mobile template, mobile app template, html5 mobile design, mobile design" />
-        <title>biotic - mobile and tablet web app template</title>
+        <meta name="author" content="salatigaweb" />
+        <meta name="description" content="Wedding Organizer Aplication" />
+        <meta name="keywords" content="Wedding Organizer Aplication" />
+        <title>Wedding Organizer</title>
         <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700,900' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="<?= base_url() ?>assets/css/themes/default/jquery.mobile-1.4.5.css">
         <link type="text/css" rel="stylesheet" href="<?= base_url() ?>assets/style.css" />

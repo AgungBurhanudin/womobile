@@ -8,37 +8,26 @@
         </div>
         <div class="page_content"> 
             <input type="hidden" name="id_wedding" id="id_wedding" value="<?= $id_wedding ?>">
-            <div class="tabs_content"> 
-                <div data-role="tabs" id="tabs">
-                    <div data-role="navbar">
-                        <ul>
-                            <?php
-                            foreach ($acara as $val) {
-                                ?>
-                                <li><a onclick="getFieldAcara('<?= $val->id_field ?>')" href="#acara_<?= $val->id_field ?>" >        <?= $val->nama_acara ?>
-                                    </a>
-                                </li>
-                                <?php
-                            }
-                            ?>
-                        </ul>
-                    </div>
-                    <?php
-                    foreach ($acara as $val) {
-                        ?>
-                                    <!--<h3><?= $val->nama_acara ?></h3>-->
-                        <div id="acara_<?= $val->id_field ?>">
-                            
-                        </div>
-                        <?php
-                    }
-                    ?>
-                </div>
-            </div>
+            
         </div>
+        <div class="page_content"> 
+            <input type="hidden" name="id_wedding" id="id_wedding" value="<?= $id_wedding ?>">
+            <?php
+            foreach ($acara as $val) {
+                ?>
+                <div data-role="collapsible" data-content-theme="false">
+                    <h4><a onclick="getFieldAcara('<?= $val->id_field ?>')" href="#acara_<?= $val->id_field ?>" ><?= $val->nama_acara ?></a></h4>
+                    <p><div id="acara_<?= $val->id_field ?>"></div></p>
+                </div>
+                <?php
+            }
+            ?>
+        </div>  
     </div>
 </div>
 <script>
+//    $("#tabAcara").scrollingTabs();
+
     function getFieldAcara(id) {
         $.ajax({
             url: "<?= base_url() ?>Wedding/acara/field?id=" + id,
@@ -75,6 +64,6 @@
                 success: function (data) {
                 }
             });
-        }
+    }
     }
 </script>

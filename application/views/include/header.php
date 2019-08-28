@@ -7,9 +7,9 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
         <link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" href="images/apple-touch-startup-image-640x1096.png">
-        <meta name="author" content="SINDEVO.COM" />
-        <meta name="description" content="biotic - mobile and tablet web app template" />
-        <meta name="keywords" content="mobile css template, mobile html template, jquery mobile template, mobile app template, html5 mobile design, mobile design" />
+        <meta name="author" content="salatigaweb" />
+        <meta name="description" content="Wedding Organizer Aplication" />
+        <meta name="keywords" content="Wedding Organizer Aplication" />
         <title>Wedding Organizer</title>
         <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700,900' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="<?= base_url() ?>assets/css/themes/default/jquery.mobile-1.4.5.css">
@@ -17,6 +17,8 @@
         <link type="text/css" rel="stylesheet" href="<?= base_url() ?>assets/css/colors/yellow.css" />
         <link type="text/css" rel="stylesheet" href="<?= base_url() ?>assets/css/swipebox.css" />
         <link rel="icon" type="image/ico" href="<?= base_url() ?>assets/images/icon.jpg" sizes="any" />
+        <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="<?= base_url() ?>../assets/css/jquery.scrolling-tabs.css" />
     </head>
     <body>
 
@@ -26,6 +28,7 @@
         <script type="text/javascript" src="<?= base_url() ?>assets/js/email.js"></script>
         <script type="text/javascript" src="<?= base_url() ?>assets/js/jquery.swipebox.js"></script>
         <script src="<?= base_url() ?>assets/js/jquery.mobile-custom.js"></script>
+        <script src="<?= base_url() ?>../assets/js/jquery.scrolling-tabs.js"></script>
 
         <div data-role="page" id="features" class="secondarypage" data-theme="b">
 
@@ -99,10 +102,13 @@
                     font-size: 20px;
                     vertical-align: middle;
                     padding-top: 0px;
-                    line-height: 35px;
-                    background-color: #f4787b;
+                    line-height: 35px;background-color: #eec0c6;
+                    background-image: linear-gradient(315deg, #eec0c6 0%, #7ee8fa 74%);
+                    padding-top: 5px;
                     color:black;
                     font-weight: bold;
+                    font-family: 'Lobster', cursive;
+                    color:#bd3d9a;
                 }
                 #labelPengantin{
                     margin: 0 auto;
@@ -170,10 +176,10 @@
                     position: relative;
                     top: -90px;
                     text-align: center;
-                    font-size: 15px;
+                    font-size: 19px;
                     vertical-align: middle;
                     line-height: 80px;
-                    color:black;
+                    color:red;
                     font-weight: bold;
                 }
                 .form-control{
@@ -184,7 +190,7 @@
                 }
 
                 table, th, td {
-                    border: 1px solid black;
+                    border: 1px solid #e7e7e7;
                 }
                 th, td {
                     padding: 5px;
@@ -192,5 +198,29 @@
                 }
                 .form_input{
                     width: 100%;
+                }
+                .custom-file-input::-webkit-file-upload-button {
+                    visibility: hidden;
+                }
+                .custom-file-input::before {
+                    content: 'Select some files';
+                    display: inline-block;
+                    background: linear-gradient(top, #f9f9f9, #e3e3e3);
+                    border: 1px solid #999;
+                    border-radius: 3px;
+                    padding: 5px 8px;
+                    outline: none;
+                    white-space: nowrap;
+                    -webkit-user-select: none;
+                    cursor: pointer;
+                    text-shadow: 1px 1px #fff;
+                    font-weight: 700;
+                    font-size: 10pt;
+                }
+                .custom-file-input:hover::before {
+                    border-color: black;
+                }
+                .custom-file-input:active::before {
+                    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
                 }
             </style>

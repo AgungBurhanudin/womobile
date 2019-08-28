@@ -10,16 +10,17 @@ if (!empty($pria)) {
     $tempat_lahir = $pria->tempat_lahir;
     $tanggal_lahir = $pria->tanggal_lahir;
     $no_hp = $pria->no_hp;
+    $email = $pria->email;
     $agama = $pria->agama;
     $pendidikan = $pria->pendidikan;
     $hobi = $pria->hobi;
     $sosmed = $pria->sosmed;
     $status = $pria->status;
     $photo = $pria->photo;
-    if($photo == ""){
+    if ($photo == "") {
         $photo = "user.jpg";
     }
-    if(!file_exists("./files/images/" . $photo)){
+    if (!file_exists("./files/images/" . $photo)) {
         $photo = "user.jpg";
     }
 } else {
@@ -33,6 +34,7 @@ if (!empty($pria)) {
     $tempat_lahir = "";
     $tanggal_lahir = "";
     $no_hp = "";
+    $email = "";
     $agama = "";
     $pendidikan = "";
     $hobi = "";
@@ -44,7 +46,7 @@ if (!empty($pria)) {
 <div class="panel-body">
     <div class="loginform">
         <div style="width: 100%">
-            <form method="POST" action="<?= base_url() ?>Dashboard/saveBiodataPria" enctype="multipart/form-data">
+            <form method="POST" id="formBioPria" action="#" enctype="multipart/form-data">
                 <input type="hidden" class="id_wedding" name="id" value="<?= $id ?>">
                 <input type="hidden" class="id_wedding" name="id_wedding" value="<?= $id_wedding ?>">
                 <input type="hidden" class="id_wedding" name="gender_pria" value="<?= $gender ?>">
@@ -53,7 +55,7 @@ if (!empty($pria)) {
                         <div class="imagePreview"></div>
                         <label class="btn btn-upload btn-primary">
                             Foto Pengantin Pria
-                            <input type="file" name="foto_pria" class="uploadFile img" value="Upload Photo" accept="image/png, image/jpeg, image/gif" style="width: 0px;height: 0px;overflow: hidden;">
+                            <input type="file" name="foto_pria" class="" data-role="none" value="Upload Photo" accept="image/png, image/jpeg, image/gif" >
                         </label>
                     </div>
                 </div>
@@ -87,8 +89,21 @@ if (!empty($pria)) {
                     <input name="no_hp_pria" id="no_hp_pria" type="text" required="required" class="form_input" data-role="none" />
                 </div>
                 <div>
+                    <label class="control-label">Email Pengantin Pria</label>
+                    <input name="email_pria" id="email_pria" type="text" required="required" class="form_input" data-role="none" />
+                </div>
+                <div>
                     <label class="control-label">Agama Pengantin Pria</label>
-                    <input name="agama_pria" id="agama_pria" type="text" required="required" class="form_input" data-role="none" />
+                    <!--<input name="agama_pria" id="agama_pria" type="text" required="required" class="form_input" data-role="none" />-->
+
+                    <select class="form_input" data-role="none" name="agama_pria" id="agama_pria">
+                        <option value="">-- Pilih Agama --</option>
+                        <option value="Islam">Islam</option>
+                        <option value="Kristen">Kristen</option>
+                        <option value="Katholik">Katholik</option>
+                        <option value="Budha">Budha</option>
+                        <option value="Hindu">Hindu</option>
+                    </select>
                 </div>
                 <div>
                     <label class="control-label">Pendidikan Pengantin Pria</label>
@@ -102,11 +117,11 @@ if (!empty($pria)) {
                     <label class="control-label">Sosmed Pengantin Pria</label>
                     <input name="sosmed_pria" id="sosmed_pria" type="text" required="required" class="form_input" data-role="none" />
                 </div>
-                <button class="btn btn-primary nextBtn pull-right" type="submit">Simpan</button>
+                <button class="btn btn-primary nextBtn pull-right" onclick="simpanBioPria()" type="submit">Simpan</button>
             </form>
         </div>
     </div>
-    
+
 </div>
 
 <script>
@@ -120,10 +135,34 @@ if (!empty($pria)) {
     $("#tempat_lahir_pria").val('<?= $tempat_lahir ?>');
     $("#tanggal_lahir_pria").val('<?= $tanggal_lahir ?>');
     $("#no_hp_pria").val('<?= $no_hp ?>');
+    $("#email_pria").val('<?= $email ?>');
     $("#agama_pria").val('<?= $agama ?>');
     $("#pendidikan_pria").val('<?= $pendidikan ?>');
     $("#hobi_pria").val('<?= $hobi ?>');
     $("#sosmed_pria").val('<?= $sosmed ?>');
     $("#status_pria").val('<?= $status ?>');
-    $("#photoPria").attr('style','background: url(<?= base_url() ."/files/images/" .$photo ?>) no-repeat center center; background-size:cover;');
+    $("#photoPria").attr('style', 'background: url(<?= base_url() . "/files/images/" . $photo ?>) no-repeat center center; background-size:cover;');
+
+    function simpanBioPria() {
+        var formData = new FormData($("#formBioPria")[0]);
+        $('#formBioPria').validate({
+            submitHandler: function (form) {
+                $.ajax({
+                    type: 'POST',
+                    url: '<?= base_url() ?>Dashboard/saveBiodataPria',
+                    processData: false,
+                    contentType: false,
+                    data: formData,
+                    dataType: "JSON",
+                    success: function (data) {
+                        if (data.code == "200") {
+                            alert("Berhasil menambah vendor!");
+                        } else {
+                            alert("Gagal menambah vendor!");
+                        }
+                    }
+                });
+            }
+        });
+    }
 </script>

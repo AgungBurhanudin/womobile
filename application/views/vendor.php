@@ -23,6 +23,7 @@
                                     <?= $val->biaya ?>
                                 </a>
                             </div>
+                            <div class="view_more"><a href="<?= base_url() ?>Dashboard/deleteVendor?id=<?= $val->id ?>" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')" data-transition="slidedown" class="ui-link"><img src="<?= base_url()?>assets/images/icons/black/menu_close.png" alt="" title="Delete Vendor"></a></div>
 
                         </li> 
 

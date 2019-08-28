@@ -89,6 +89,7 @@ class User extends CI_Controller {
             $msg = "Berhasil merubah user";
         }
         $this->session->set_flashdata('success', $msg);
+        $this->wedding_model->insertLog($id_wedding, "Merubah user profile");
         redirect(base_url() . 'User/edit');
     }
 
@@ -99,6 +100,7 @@ class User extends CI_Controller {
         $key['user_id'] = $id;
         $this->db->update("app_user", $data, $key);
         $this->session->set_flashdata('success', $msg);
+        $this->wedding_model->insertLog($id_wedding, "Merubah password");
         redirect(base_url() . 'User/edit');
     }
 

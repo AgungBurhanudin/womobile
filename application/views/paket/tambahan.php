@@ -8,7 +8,7 @@
         </div>
         <div class="page_content"> 
             <input type="hidden" name="id_wedding" id="id_wedding" value="<?= $id_wedding ?>">
-            <div class="tabs_content"> 
+<!--            <div class="tabs_content"> 
                 <div data-role="tabs" id="tabs">
                     <div data-role="navbar">
                         <ul>
@@ -26,7 +26,7 @@
                     <?php
                     foreach ($tambahan as $val) {
                         ?>
-                                    <!--<h3><?= $val->nama_tambahan ?></h3>-->
+                                    <h3><?= $val->nama_tambahan ?></h3>
                         <div id="tambahan_<?= $val->id_field ?>">
                             
                         </div>
@@ -34,7 +34,20 @@
                     }
                     ?>
                 </div>
-            </div>
+            </div>-->
+        <div class="page_content"> 
+            <input type="hidden" name="id_wedding" id="id_wedding" value="<?= $id_wedding ?>">
+            <?php
+            foreach ($tambahan as $val) {
+                ?>
+                <div data-role="collapsible" data-content-theme="false">
+                    <h4><a onclick="getFieldTambahan('<?= $val->id_field ?>')" href="#tambahan_<?= $val->id_field ?>" ><?= $val->nama_tambahan ?></a></h4>
+                    <p><div id="tambahan_<?= $val->id_field ?>"></div></p>
+                </div>
+                <?php
+            }
+            ?>
+        </div> 
         </div>
     </div>
 </div>

@@ -48,6 +48,7 @@ class Dashboard extends CI_Controller {
         $data['tempat_lahir'] = $_POST['tempat_lahir_pria'];
         $data['tanggal_lahir'] = $_POST['tanggal_lahir_pria'];
         $data['no_hp'] = $_POST['no_hp_pria'];
+        $data['email'] = $_POST['email_pria'];
         $data['agama'] = $_POST['agama_pria'];
         $data['pendidikan'] = $_POST['pendidikan_pria'];
         $data['hobi'] = $_POST['hobi_pria'];
@@ -85,10 +86,12 @@ class Dashboard extends CI_Controller {
         } else {
 //            $data['photo'] = "";
         }
-
         $key['id'] = $_POST['id'];
         $this->db->update('pengantin', $data, $key);
-        redirect(base_url() . "Dashboard/biodata");
+        $this->wedding_model->insertLog($id, "Merubah biodata pengantin pria");
+        $result = array('code' => 200);
+        echo json_encode($result);
+//        redirect(base_url() . "Dashboard/biodata");
     }
 
     public function saveBiodataWanita() {
@@ -103,6 +106,7 @@ class Dashboard extends CI_Controller {
         $data['tempat_lahir'] = $_POST['tempat_lahir_wanita'];
         $data['tanggal_lahir'] = $_POST['tanggal_lahir_wanita'];
         $data['no_hp'] = $_POST['no_hp_wanita'];
+        $data['email'] = $_POST['email_wanita'];
         $data['agama'] = $_POST['agama_wanita'];
         $data['pendidikan'] = $_POST['pendidikan_wanita'];
         $data['hobi'] = $_POST['hobi_wanita'];
@@ -141,7 +145,9 @@ class Dashboard extends CI_Controller {
         }
         $key['id'] = $_POST['id'];
         $this->db->update('pengantin', $data, $key);
-        redirect(base_url() . "Dashboard");
+        $this->wedding_model->insertLog($id, "Merubah biodata pengantin pria");
+        $result = array('code' => 200);
+        echo json_encode($result);
     }
 
     public function meeting() {
@@ -190,6 +196,16 @@ class Dashboard extends CI_Controller {
             'dibayaroleh' => $post['bayar_oleh'],
         );
         $this->db->insert('vendor_pengantin', $data);
+        $this->wedding_model->insertLog($id_wedding, "Menambah data vendor");
+        $this->vendor();
+    }
+
+    public function deleteVendor() {
+        $id = $this->id_wedding;
+        $id_vendor = $_GET['id'];
+        $key['id'] = $id_vendor;
+        $this->db->delete('vendor_pengantin', $key);
+        $this->wedding_model->insertLog($id, "Menghapus data vendor");
         $this->vendor();
     }
 
@@ -206,7 +222,11 @@ class Dashboard extends CI_Controller {
     }
 
     public function layout() {
-        render('layout');
+        $id = $this->id_wedding;
+        $data = array(
+            'layout' => $this->db->query("SELECT layout FROM wedding WHERE id = '$id'")->row(),
+        );
+        render('layout', $data);
     }
 
     public function log() {

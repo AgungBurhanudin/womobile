@@ -6,36 +6,25 @@
         <div style="float: right;margin-top: 15px;margin-right: 15px">
             <a href="<?= base_url() ?>Dashboard" data-rel="back" class="ui-link"><img src="<?= base_url() ?>assets/images/icons/black/menu_close.png" alt="" title="" height="30px"></a>
         </div>
+
         <div class="page_content"> 
             <input type="hidden" name="id_wedding" id="id_wedding" value="<?= $id_wedding ?>">
-            <div class="tabs_content"> 
-                <div data-role="tabs" id="tabs">
-                    <div data-role="navbar">
-                        <ul>
-                            <?php
-                            foreach ($upacara as $val) {
-                                ?>
-                                <li><a onclick="getFieldUpacara('<?= $val->id_field ?>')" href="#upacara_<?= $val->id_field ?>" >        <?= $val->nama_upacara ?>
-                                    </a>
-                                </li>
-                                <?php
-                            }
-                            ?>
-                        </ul>
-                    </div>
-                    <?php
-                    foreach ($upacara as $val) {
+            <?php
+            foreach ($upacara_parent as $v) {
+                echo '<h4 class="page_title">' . $v->nama_upacara . '</h4>';
+                foreach ($upacara as $val) {
+                    if ($val->id_upacara == $v->id) {
                         ?>
-                                    <!--<h3><?= $val->nama_upacara ?></h3>-->
-                        <div id="upacara_<?= $val->id_field ?>">
-                            
+                        <div data-role="collapsible" data-content-theme="false">
+                            <h4><a onclick="getFieldUpacara('<?= $val->id_field ?>')" href="#upacara_<?= $val->id_field ?>" ><?= $val->nama_upacara ?></a></h4>
+                            <p><div id="upacara_<?= $val->id_field ?>"></div></p>
                         </div>
                         <?php
                     }
-                    ?>
-                </div>
-            </div>
-        </div>
+                }
+            }
+            ?>
+        </div>  
     </div>
 </div>
 <script>
@@ -49,7 +38,7 @@
 
     }
 
-    function saveacara(id, value, type = null) {
+    function saveupacara(id, value, type = null) {
         var id_wedding = $("#id_wedding").val();
         if (type == "addabletext") {
             var dataForm = new FormData($("#form" + value)[0]);
@@ -75,6 +64,6 @@
                 success: function (data) {
                 }
             });
-        }
+    }
     }
 </script>
