@@ -87,7 +87,7 @@
 
 <script>
     $(function () {
-        $("#kategori_vendor").select2();
+//        $("#kategori_vendor").select2();
     });
 
     function getVendor(kategori) {
