@@ -99,12 +99,11 @@
                     width: 80%;
                     text-align: center;
                     border-radius: 10px;
-                    font-size: 20px;
+                    font-size: 25px;
                     vertical-align: middle;
                     padding-top: 0px;
                     line-height: 35px;background-color: #eec0c6;
                     background-image: linear-gradient(315deg, #eec0c6 0%, #7ee8fa 74%);
-                    padding-top: 5px;
                     color:black;
                     font-weight: bold;
                     font-family: 'Lobster', cursive;
@@ -174,7 +173,7 @@
                 .labelCountDown{
                     margin: 0 auto;
                     position: relative;
-                    top: -90px;
+                    top: 20px;
                     text-align: center;
                     font-size: 19px;
                     vertical-align: middle;

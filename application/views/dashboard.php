@@ -13,7 +13,7 @@
             <?= $wedding->nama_pria ?> <br> <?= $wedding->nama_wanita ?>
         </div>
         <div style="clear: both"></div>
-        <div class="page_content" style="margin-top: -90px"> 
+        <div class="page_content" style="margin-top: -60px"> 
             <a href="<?= base_url() ?>Dashboard/biodata">
                 <div class="icon-wrap">
                     <div>
