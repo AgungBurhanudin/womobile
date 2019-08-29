@@ -18,6 +18,7 @@ function checkToken() {
                 . " user_token = '$token' "
                 . "and user_user_name = '$username' "
                 . "and last_used > DATE_SUB(NOW(),INTERVAL 60 MINUTE);";
+        
         $arr_cek = $CI->db->query($sql)->row();
 
         if (isset($arr_cek->user_user_name)) {

@@ -69,8 +69,8 @@ class Login extends CI_Controller {
                     $reply['code'] = '200';
                     $reply['message'] = 'Berhasill Login';
 //                    $this->load->view('login', $reply);
-//                    redirect(base_url() . 'Dashboard');
-//                exit();
+                    redirect(base_url() . 'Dashboard');
+                    exit();
                 } else {
                     $reply['code'] = '401';
                     $reply['message'] = 'Password tidak sama';

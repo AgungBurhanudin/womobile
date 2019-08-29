@@ -18,6 +18,20 @@
         <link type="text/css" rel="stylesheet" href="<?= base_url() ?>assets/css/swipebox.css" />
     </head>
     <body>
+        <style>
+            .field-icon {
+                float: right;
+                margin-left: -25px;
+                margin-top: -25px;
+                position: relative;
+                z-index: 2;
+            }
+
+            .container{
+                padding-top:50px;
+                margin: auto;
+            }
+        </style>
 
         <div data-role="page" id="login" class="secondarypage" data-theme="b">
 
@@ -44,15 +58,11 @@
                         ?>
                         <form id="formLogin" method="post" action="<?= base_url() ?>Login/login">
                             <input type="text" name="username" value="" class="form_input required" placeholder="username" data-role="none" />
-                            <input type="password" name="password" value="" class="form_input required" placeholder="password" data-role="none" />
-                            <div class="forgot_pass"><a href="forgotpass.html" data-transition="slidedown">Forgot Password?</a></div>
-                            <input type="submit" name="submit" onclick="login()" class="form_submit" id="submit" data-role="none" value="SIGN IN" style="background-color: #9f2b23" />
+                            <input type="password" name="password" id="password-field" value="" class="form_input required" placeholder="password" data-role="none" />
+                            <!--<span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password">dsds</span>-->
+                            <div class="forgot_pass"><a href="#" data-transition="slidedown">Forgot Password?</a></div>
+                            <input type="submit" name="submit"  class="form_submit" id="submit" data-role="none" value="SIGN IN" style="background-color: #9f2b23" />
                         </form>
-
-                        <!--                        <div class="signup_bottom">
-                                                    <p>Don't have an account?</p>
-                                                    <a href="register.html" data-transition="slidedown">SIGN UP</a>
-                                                </div>-->
 
                     </div>
 
@@ -66,9 +76,19 @@
         <script>
             $(function () {
                 $("#alert").hide();
+//                $(".toggle-password").click(function () {
+//
+//                    $(this).toggleClass("fa-eye fa-eye-slash");
+//                    var input = $($(this).attr("toggle"));
+//                    if (input.attr("type") == "password") {
+//                        input.attr("type", "text");
+//                    } else {
+//                        input.attr("type", "password");
+//                    }
+//                });
             });
 
-            function login() {
+            function loginForm() {
                 var formData = new FormData($("#formLogin")[0]);
                 $('#formLogin').validate({
                     rules: {
@@ -89,6 +109,7 @@
                             dataType: "JSON",
                             success: function (data) {
                                 if (data.code == "200") {
+                                    alert(code);
                                     window.location.href = "<?= base_url() ?>Dashboard";
                                 } else {
                                     $("#alert").show();
