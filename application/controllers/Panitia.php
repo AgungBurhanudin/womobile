@@ -40,7 +40,7 @@ class Panitia extends CI_Controller {
                                 LEFT JOIN panitia_tipe b ON a.id_panitia_tipe = b.id 
                         WHERE a.id_wedding = '$id'
                         ORDER BY
-                                a.urutan ASC")->result()
+                                b.urutan ASC")->result()
         );
         render('paket/panitia', $data);
     }

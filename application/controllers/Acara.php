@@ -40,7 +40,7 @@ class Acara extends CI_Controller {
                                 LEFT JOIN acara_tipe b ON a.id_acara_tipe = b.id
                         WHERE a.id_wedding = '$id' 
                         ORDER BY
-                                a.urutan ASC")->result()
+                                b.urutan ASC")->result()
         );
         render('paket/acara', $data);
     }

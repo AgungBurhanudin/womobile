@@ -55,7 +55,10 @@ if (!empty($pria)) {
                         <div class="imagePreview"></div>
                         <label class="btn btn-upload btn-primary">
                             Foto Pengantin Pria
-                            <input type="file" name="foto_pria" class="" data-role="none" value="Upload Photo" accept="image/png, image/jpeg, image/gif" >
+                            <input type="file" id="file-upload-pria" name="foto_pria" class="" data-role="none" value="Upload Photo" accept="image/png, image/jpeg, image/gif" >
+                            <label for="file-upload-pria" class="custom-file-upload">
+                                <i class="fa fa-cloud-upload"></i> Upload Foto
+                            </label>
                         </label>
                     </div>
                 </div>
@@ -82,11 +85,11 @@ if (!empty($pria)) {
 
                 <div>
                     <label class="control-label">Tanggal Lahir Pengantin Pria</label>
-                    <input name="tanggal_lahir_pria" id="tanggal_lahir_pria" type="date" required="required" class="form_input" data-role="none" />
+                    <input name="tanggal_lahir_pria" id="tanggal_lahir_pria" type="text" required="required" class="form_input datepicker-less" data-role="none" />
                 </div>
                 <div>
                     <label class="control-label">No Hp Pengantin Pria</label>
-                    <input name="no_hp_pria" id="no_hp_pria" type="text" required="required" class="form_input" data-role="none" />
+                    <input name="no_hp_pria" id="no_hp_pria" type="number" required="required" class="form_input" onkeypress="return isNumberKey(event)" data-role="none" />
                 </div>
                 <div>
                     <label class="control-label">Email Pengantin Pria</label>
@@ -96,13 +99,24 @@ if (!empty($pria)) {
                     <label class="control-label">Agama Pengantin Pria</label>
                     <!--<input name="agama_pria" id="agama_pria" type="text" required="required" class="form_input" data-role="none" />-->
 
-                    <select class="form_input" data-role="none" name="agama_pria" id="agama_pria">
+<!--                    <select class="form_input" data-role="none" name="agama_pria" id="agama_pria">
                         <option value="">-- Pilih Agama --</option>
                         <option value="Islam">Islam</option>
                         <option value="Kristen">Kristen</option>
                         <option value="Katholik">Katholik</option>
                         <option value="Budha">Budha</option>
                         <option value="Hindu">Hindu</option>
+                    </select>-->
+
+                    <select name="agama_pria" id="agama_pria" data-role="none" class="form_input">
+                        <option value=""> -- Pilih Agama --</option>
+                        <?php
+                        foreach ($data_agama as $val) {
+                            ?>
+                            <option value="<?= $val->agama ?>"><?= $val->agama ?></option>
+                            <?php
+                        }
+                        ?>
                     </select>
                 </div>
                 <div>
@@ -133,7 +147,7 @@ if (!empty($pria)) {
     $("#alamat_sekarang_pria").val('<?= $alamat_sekarang ?>');
     $("#alamat_nikah_pria").val('<?= $alamat_nikah ?>');
     $("#tempat_lahir_pria").val('<?= $tempat_lahir ?>');
-    $("#tanggal_lahir_pria").val('<?= $tanggal_lahir ?>');
+    $("#tanggal_lahir_pria").val('<?= toDMY($tanggal_lahir) ?>');
     $("#no_hp_pria").val('<?= $no_hp ?>');
     $("#email_pria").val('<?= $email ?>');
     $("#agama_pria").val('<?= $agama ?>');
@@ -144,9 +158,10 @@ if (!empty($pria)) {
     $("#photoPria").attr('style', 'background: url(<?= base_url() . "/files/images/" . $photo ?>) no-repeat center center; background-size:cover;');
 
     function simpanBioPria() {
-        var formData = new FormData($("#formBioPria")[0]);
+
         $('#formBioPria').validate({
             submitHandler: function (form) {
+                var formData = new FormData($("#formBioPria")[0]);
                 $.ajax({
                     type: 'POST',
                     url: '<?= base_url() ?>Dashboard/saveBiodataPria',

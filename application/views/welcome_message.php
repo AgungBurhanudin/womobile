@@ -43,6 +43,11 @@
         <script type="text/javascript" src="<?= base_url() ?>assets/js/email.js"></script>
         <script type="text/javascript" src="<?= base_url() ?>assets/js/jquery.swipebox.js"></script>
         <script src="<?= base_url() ?>assets/js/jquery.mobile-custom.js"></script>
+        <script>
+            setTimeout(function () {
+                window.location = "<?= base_url() ?>Login";
+            }, 2000)
+        </script>
     </body>
 </html>
 

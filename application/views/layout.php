@@ -7,12 +7,16 @@
         </div>
         <div class="page_content"> 
             <?php
-            if ($layout->layout == "") {
+            if (empty($layout)) {
                 echo "Layout belum di upload";
             } else {
-                ?>
-                <img src="<?= base_url() ?>../files/images/<?= $layout->layout ?>" width="100%">
-                <?php
+                foreach ($layout as $v) {
+                    ?>
+                    <h1><?= $v->nama_layout ?></h1>
+                    <img src="<?= base_url() ?>../files/images/<?= $v->layout ?>" width="100%">
+
+                    <?php
+                }
             }
             ?>
 

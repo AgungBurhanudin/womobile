@@ -1,6 +1,7 @@
 <?php
 if (empty($data_user)) {
     $id = "";
+    $id_pengantin = "";
     $company = "";
     $group = "";
     $user_real_name = "";
@@ -13,6 +14,7 @@ if (empty($data_user)) {
 } else {
     foreach ($data_user as $val) {
         $id = $val->user_id;
+        $id_pengantin = $val->id_pengantin;
         $group = $val->user_group_id;
         $company = $val->user_company;
         $user_real_name = $val->user_real_name;
@@ -43,6 +45,7 @@ if (empty($data_user)) {
             <h3>Form Edit Profil</h3>
             <form class="form-horizontal" action="<?= base_url() ?>User/save" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="id" id="id" value="<?= $id ?>">
+                <input type="hidden" name="id_pengantin" id="id_pengantin" value="<?= $id_pengantin ?>">
                 <div class="card">
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label" for="text-input">Nama <span class="red">*</span></label>

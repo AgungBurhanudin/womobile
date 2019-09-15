@@ -22,7 +22,11 @@ class Dashboard extends CI_Controller {
     public function index() {
         $data = $this->wedding_model->getOneData($this->id_wedding);
         $data = array(
-            'wedding' => $data
+            'wedding' => $data,
+            'logs' => $this->db->query("SELECT a.*,b.user_real_name  FROM log_aktivitas a "
+                    . "LEFT JOIN app_user b "
+                    . "ON a.id_user = b.user_id "
+                    . "WHERE a.id_wedding = '$this->id_wedding' ORDER BY datetime DESC LIMIT 10")->result(),
         );
         render('dashboard', $data);
     }
@@ -32,7 +36,8 @@ class Dashboard extends CI_Controller {
         $data = array(
             'pria' => $this->db->query("SELECT * FROM pengantin WHERE id_wedding = '$id' AND gender = 'L'")->row(),
             'wanita' => $this->db->query("SELECT * FROM pengantin WHERE id_wedding = '$id' AND gender = 'P'")->row(),
-            'id_wedding' => $id
+            'id_wedding' => $id,
+            'data_agama' => $this->db->query("SELECT * FROM agama ORDER BY agama ASC")->result(),
         );
         render('biodata', $data);
     }
@@ -46,7 +51,7 @@ class Dashboard extends CI_Controller {
         $data['alamat_sekarang'] = $_POST['alamat_sekarang_pria'];
         $data['alamat_nikah'] = $_POST['alamat_nikah_pria'];
         $data['tempat_lahir'] = $_POST['tempat_lahir_pria'];
-        $data['tanggal_lahir'] = $_POST['tanggal_lahir_pria'];
+        $data['tanggal_lahir'] = toYMD($_POST['tanggal_lahir_pria']);
         $data['no_hp'] = $_POST['no_hp_pria'];
         $data['email'] = $_POST['email_pria'];
         $data['agama'] = $_POST['agama_pria'];
@@ -104,7 +109,7 @@ class Dashboard extends CI_Controller {
         $data['alamat_sekarang'] = $_POST['alamat_sekarang_wanita'];
         $data['alamat_nikah'] = $_POST['alamat_nikah_wanita'];
         $data['tempat_lahir'] = $_POST['tempat_lahir_wanita'];
-        $data['tanggal_lahir'] = $_POST['tanggal_lahir_wanita'];
+        $data['tanggal_lahir'] = toYMD($_POST['tanggal_lahir_wanita']);
         $data['no_hp'] = $_POST['no_hp_wanita'];
         $data['email'] = $_POST['email_wanita'];
         $data['agama'] = $_POST['agama_wanita'];
@@ -153,7 +158,8 @@ class Dashboard extends CI_Controller {
     public function meeting() {
         $id = $this->id_wedding;
         $data = array(
-            'meeting' => $this->db->query("SELECT * FROM jadwal_meeting WHERE id_wedding = '$id'")->result(),
+            'meeting' => $this->db->query("SELECT * FROM jadwal_meeting WHERE id_wedding = '$id' ORDER BY tanggal DESC")->result(),
+            'wedding' => $this->db->query("SELECT * FROM wedding WHERE id = '$id'")->row()
         );
         render('meeting', $data);
     }
@@ -210,7 +216,69 @@ class Dashboard extends CI_Controller {
     }
 
     public function payment() {
-        render('payment');
+        $id = $this->id_wedding;
+        $data = array(
+            'vendor' => $this->db->query("SELECT a.*,b.nama_kategori FROM vendor_pengantin a "
+                    . "LEFT JOIN kategori_vendor b "
+                    . "ON a.id_kategori = b.id "
+                    . "WHERE a.id_wedding = '$id'")->result(),
+        );
+        render('payment', $data);
+    }
+
+    public function editPayment() {
+        $id_wedding = $this->id_wedding;
+        $id = $_GET['id'];
+        $data = array(
+            'id_wedding' => $id_wedding,
+            'payment' => $this->db->query("SELECT a.*,b.nama_kategori FROM vendor_pengantin a "
+                    . "LEFT JOIN kategori_vendor b "
+                    . "ON a.id_kategori = b.id "
+                    . "WHERE a.id_wedding = '$id_wedding' AND a.id='$id'")->row(),
+        );
+        render('editPayment', $data);
+    }
+    
+    public function doPayment() {
+        $id_wedding = isset($_POST['id_wedding']) ? $_POST['id_wedding'] : "";
+        $key['id'] = $_POST['id_payment_pengantin'];
+        $data = array(
+            'status' => $_POST['status_pembayaran'],
+            'tanggal_bayar' => date('Y-m-d', strtotime($_POST['tanggal_bayar'])),
+            'cara_pembayaran' => $_POST['cara'],
+            'dibayarke' => $_POST['dibayarke']
+        );
+        if (isset($_FILES)) {
+            $path = realpath(APPPATH . '../../files/bukti/');
+            $this->upload->initialize(array(
+                'upload_path' => $path,
+                'allowed_types' => 'png|jpg|gif|docx|doc|xls|xlsx|pdf',
+                'max_size' => '5000',
+                'max_width' => '3000',
+                'max_height' => '3000'
+            ));
+
+            if ($this->upload->do_upload('bukti')) {
+                $data_upload = $this->upload->data();
+                $this->image_lib->initialize(array(
+                    'image_library' => 'gd2',
+                    'source_image' => $path . '/' . $data_upload['file_name'],
+                    'maintain_ratio' => false,
+                    'overwrite' => TRUE
+                ));
+                if ($this->image_lib->resize()) {
+                    $data['bukti'] = $data_upload['raw_name'] . $data_upload['file_ext'];
+                } else {
+                    $data['bukti'] = $data_upload['file_name'];
+                }
+            }
+        }
+        $this->db->update('vendor_pengantin', $data, $key);
+        $this->wedding_model->insertLog($id_wedding, "Payment vendor " . $_POST['nama_vendor_payment']);
+        $result = array(
+            'code' => 200
+        );
+        echo json_encode($result);
     }
 
     public function contactus() {
@@ -224,7 +292,7 @@ class Dashboard extends CI_Controller {
     public function layout() {
         $id = $this->id_wedding;
         $data = array(
-            'layout' => $this->db->query("SELECT layout FROM wedding WHERE id = '$id'")->row(),
+            'layout' => $this->db->query("SELECT * FROM layout WHERE id_wedding = '$id'")->result(),
         );
         render('layout', $data);
     }

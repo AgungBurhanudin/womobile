@@ -6,8 +6,9 @@
             <a href="<?= base_url() ?>Dashboard"  class="ui-link"><img src="<?= base_url() ?>assets/images/icons/black/menu_close.png" alt="" title="" height="30px"></a>
         </div>
         <div class="page_content"> 
-            <form class="form-horizontal" action="<?= base_url() ?>Dashboard/saveVendor" id="formVendor" method="post">
+            <form class="form-horizontal" action="#" id="formVendor" method="post">
                 <input type="hidden" class="id_wedding" name="id_wedding" value="<?= $id_wedding ?>">
+                <input type="hidden" class="id" name="id" value="">
                 <div class="form-group row">
                     <label class="col-md-3 col-form-label">Kategori Vendor </label>
                     <div class="col-md-9">
@@ -53,7 +54,7 @@
                 <div class="form-group row">
                     <label class="col-md-3 col-form-label">No Telepone</label>
                     <div class="col-md-9">
-                        <input name="nohp" id="nohp" type="text" required="required" class="form_input" data-role="none" />
+                        <input name="nohp" id="nohp" type="number" required="required" class="form_input" data-role="none" />
                     </div>
                 </div>
                 <div class="form-group row">
@@ -75,7 +76,7 @@
                 <div class="form-group row">
                     <label class="col-md-3 col-form-label"></label>
                     <div class="col-md-9">                        
-                        <button class="btn btn-primary" type="submit">Simpan</button>
+                        <button class="btn btn-primary" type="button" onclick="simpanVendor()">Simpan</button>
                     </div>
                 </div>
             </form>
@@ -101,38 +102,35 @@
 
     function simpanVendor() {
         var formData = new FormData($("#formVendor")[0]);
-        $('#formVendor').validate({
-            rules: {
-                nama_vendor: {
-                    required: true,
-                    minlength: 2
-                },
-                bayar_oleh: "required"
-            },
-            messages: {
-                nama_vendor: {
-                    required: "Please enter a Nama Vendor",
-                    minlength: "Nama Vendor minimal 2 karakter"
-                },
-                bayar_oleh: "Pilih Pembayaran"
-            },
-            submitHandler: function (form) {
-                $.ajax({
-                    type: 'POST',
-                    url: '<?= base_url() ?>Wedding/vendor/add',
-                    processData: false,
-                    contentType: false,
-                    data: formData,
-                    dataType: "JSON",
-                    success: function (data) {
-                        if (data.code == "200") {
-                            swal("success", "Berhasil menambah vendor!");
-                            $("#vendorModal").modal('hide');
-                        } else {
-                            swal("warning", "Gagal menambah vendor!");
+        $.ajax({
+            type: 'POST',
+            url: '<?= base_url() ?>Wedding/vendor/add',
+            processData: false,
+            contentType: false,
+            data: formData,
+            dataType: "JSON",
+            success: function (data) {
+                if (data.code == "200") {
+                    $.confirm({
+                        title: "SUCCESS",
+                        content: "Berhasil menambahkan vendor",
+                        icon: 'fa fa-question-circle',
+                        animation: 'scale',
+                        closeAnimation: 'scale',
+                        opacity: 0.5,
+                        buttons: {
+                            'close': {
+                                text: 'Proceed',
+                                btnClass: 'btn-blue',
+                                action: function () {
+                                    window.location = "<?= base_url() ?>Dashboard/vendor";
+                                }
+                            }
                         }
-                    }
-                });
+                    });
+                } else {
+                    swal("warning", "Gagal menambah vendor!");
+                }
             }
         });
     }

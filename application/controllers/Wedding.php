@@ -1,4 +1,5 @@
 <?php
+
 error_reporting(E_ALL);
 ini_set('display_errors', TRUE);
 ini_set('display_startup_errors', TRUE);
@@ -191,17 +192,35 @@ class Wedding extends CI_Controller {
 
     public function vendor() {
         $uri = $this->uri->segment(3);
-        $this->db->where('id', $uri);
+        $post = $_POST;
         if ($uri == "add") {
+            $data['id_kategori'] = $post['kategori_vendor'];
+            $data['nama_vendor'] = $post['nama_vendor'];
+            $data['id_wedding'] = $post['id_wedding'];
+            $data['cp'] = $post['cp'];
+            $data['nohp_cp'] = $post['nohp'];
+            $data['biaya'] = $post['biaya'];
+            $data['dibayaroleh'] = $post['bayar_oleh'];
+            // print_r($data);
+            $this->db->insert("vendor_pengantin", $data);
             $return = array(
                 'code' => '200',
                 'msg' => 'Berhasil menambah vendor'
             );
             echo json_encode($return);
+            exit();
         } else if ($uri == "edit") {
             $id = $_GET['id'];
         } else if ($uri == "delete") {
             $id = $_GET['id'];
+            $key['id'] = $id;
+            $this->db->delete("vendor_pengantin", $key);
+            $return = array(
+                'code' => '200',
+                'msg' => 'Berhasil menghapus vendor'
+            );
+            echo json_encode($return);
+            exit();
         }
     }
 

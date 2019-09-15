@@ -11,6 +11,7 @@ $dataWedding = $this->wedding_model->getOneData($id_wedding);
             <li><a href="<?= base_url() ?>Dashboard" data-transition="slidefade"><img src="<?= base_url() ?>assets/images/icons/white/home.png" alt="" title="" /><span>Home</span></a></li>
             <li><a href="<?= base_url() ?>Upacara" data-transition="slidefade"><img src="<?= base_url() ?>assets/images/icons/white/toggle.png" alt="" title="" /><span>Upacara</span></a></li>
             <li><a href="<?= base_url() ?>Acara" data-transition="slidefade"><img src="<?= base_url() ?>assets/images/icons/white/docs.png" alt="" title="" /><span>Acara</span></a></li>
+            <li><a href="<?= base_url() ?>Keluarga" data-transition="slidefade"><img src="<?= base_url() ?>assets/images/icons/white/team.png" alt="" title="" /><span>Keluarga</span></a></li>
             <li><a href="<?= base_url() ?>Panitia" data-transition="slidefade"><img src="<?= base_url() ?>assets/images/icons/white/team.png" alt="" title="" /><span>Panitia</span></a></li>
             <li><a href="<?= base_url() ?>Tambahan" data-transition="slidefade"><img src="<?= base_url() ?>assets/images/icons/white/briefcase.png" alt="" title="" /><span>Tambahan/Lampiran</span></a></li>
             <li><a href="<?= base_url() ?>Undangan" data-transition="slidefade"><img src="<?= base_url() ?>assets/images/icons/white/heart.png" alt="" title="" /><span>Undangan</span></a></li>
@@ -41,6 +42,7 @@ $dataWedding = $this->wedding_model->getOneData($id_wedding);
         <nav class="user-nav">
             <ul>
                 <li><a href="<?= base_url() ?>User/edit"><img src="<?= base_url() ?>assets/images/icons/white/settings.png" alt="" title="" /><span>Edit Profile</span></a></li>
+                <li><a href="<?= base_url() ?>User/prewed"><img src="<?= base_url() ?>assets/images/icons/white/user.png" alt="" title="" /><span>Upload Prewed</span></a></li>
                 <li><a href="<?= base_url() ?>User/password"><img src="<?= base_url() ?>assets/images/icons/white/briefcase.png" alt="" title="" /><span>Ganti Password</span></a></li>
                 <li>&nbsp;<br></li>
                 <li><a href="<?= base_url() ?>Logout"><img src="<?= base_url() ?>assets/images/icons/white/lock.png" alt="" title="" /><span>Logout</span></a></li>

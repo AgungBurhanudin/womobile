@@ -19,6 +19,8 @@
         <link rel="icon" type="image/ico" href="<?= base_url() ?>assets/images/icon.jpg" sizes="any" />
         <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="<?= base_url() ?>../assets/css/jquery.scrolling-tabs.css" />
+        <link rel="stylesheet" href="<?= base_url() ?>assets/css/datepicker.css">
+        <link rel="stylesheet" href="<?= base_url() ?>assets/vendors/sweet/min/jquery.sweet-modal.min.css" />
     </head>
     <body>
 
@@ -29,6 +31,85 @@
         <script type="text/javascript" src="<?= base_url() ?>assets/js/jquery.swipebox.js"></script>
         <script src="<?= base_url() ?>assets/js/jquery.mobile-custom.js"></script>
         <script src="<?= base_url() ?>../assets/js/jquery.scrolling-tabs.js"></script>
+        <script src="<?= base_url() ?>assets/js/jquery.ui.js"></script>
+        <script src="<?= base_url() ?>assets/vendors/sweet/min/jquery.sweet-modal.min.js">
+        </script>
+        <!--<link rel="stylesheet" type="assets/css" href="<?= base_url() ?>css/jquery-confirm.css"/>-->
+        <!--<script type="text/javascript" src="<?= base_url() ?>assets/js/jquery-confirm.js"></script>-->
+        <script>
+
+            function isNumberKey(evt) {
+                var charCode = (evt.which) ? evt.which : evt.keyCode
+                if (charCode > 31 && (charCode < 48 || charCode > 57))
+                    return false;
+                return true;
+            }
+
+            function swal(tipe, content) {
+                var title_label = null;
+                if (tipe == "success") {
+                    title_label = "SUCCESS";
+                } else if (tipe == "warning") {
+                    title_label = "ERROR";
+                }
+                $.confirm({
+                    title: title_label,
+                    content: content,
+                    icon: 'fa fa-question-circle',
+                    animation: 'scale',
+                    closeAnimation: 'scale',
+                    opacity: 0.5,
+                    buttons: {
+                        'close': {
+                            text: 'Proceed',
+                            btnClass: 'btn-blue',
+                            action: function () {
+                                return true;
+                            }
+                        }
+                    }
+                });
+            }
+            function swalConfirm(content) {
+                $.confirm({
+                    title: 'Confirm',
+                    content: content,
+                    icon: 'fa fa-question-circle',
+                    animation: 'scale',
+                    closeAnimation: 'scale',
+                    opacity: 0.5,
+                    buttons: {
+                        'confirm': {
+                            text: 'Proceed',
+                            btnClass: 'btn-blue',
+                            action: function () {
+                                return true;
+                            }
+                        },
+                        cancel: function () {
+                            return false;
+                        }
+                    }
+                });
+            }
+            $(function () {// alert
+
+                $(".datepicker-more").datepicker({
+                    dateFormat: 'dd-mm-yy',
+                    minDate: 0
+                });
+                $(".datepicker-less").datepicker({
+                    dateFormat: 'dd-mm-yy',
+                    maxDate: 'today'
+                });
+                $(".datepicker").datepicker({
+                    dateFormat: 'dd-mm-yy'
+                });
+//                $(".onlynumber").keypress({
+//                    return isNumberKey(this);
+//                });
+            });
+        </script>
 
         <div data-role="page" id="features" class="secondarypage" data-theme="b">
 
@@ -39,6 +120,20 @@
                 <div class="clear"></div>
             </div><!-- /header -->
             <style>
+                select{
+                    height: 35px;
+                    background-color: #fff;
+                    border: 1px solid #e7e7e7;
+                }
+                input[type="file"] {
+                    display: none;
+                }
+                .custom-file-upload {
+                    border: 1px solid #ccc;
+                    display: inline-block;
+                    padding: 6px 12px;
+                    cursor: pointer;
+                }
                 .icon-wrap {
                     display: inline-block;
                     padding: 0px;

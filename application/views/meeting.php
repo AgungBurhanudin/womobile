@@ -15,16 +15,25 @@
                     <?php
                     if (!empty($meeting)) {
                         foreach ($meeting as $val) {
+                            $color = "#f4787a";
+                            if ($val->tanggal == date('Y-m-d')) {
+                                $color = "#1df9dac7";
+                            } else if ($val->tanggal < date('Y-m-d')) {
+                                $color = "#e7e7e7";
+                            }
                             ?>
-                            ?>
-                            <li style="display: inline-block;">
-                                <div class="post_entry">
-                                    <div class="post_date">
-                                        <span class="day"><?= $val->tanggal ?></span>
-                                        <span class="month"><?= $val->tanggal ?></span>
-                                    </div>
-                                    <div class="post_title">
-                                        <h2><a href="#" data-transition="flip" class="ui-link">Di <?= $val->tempat ?><br><?= $val->keperluan ?></a></h2>
+                            <li style="display: inline-block; background-color: <?= $color ?>">
+                                <div class="post_entry" style="text-align: center">
+                                    <h1>INFO</h1>
+                                    <h1>Wedding <?= $wedding->pengantin_pria ?> & <?= $wedding->pengantin_wanita ?></h1>                                    
+                                    <h1><?= DateToIndo($wedding->tanggal) ?></h1>
+                                    <h1><?= $wedding->tempat ?>, <?= $wedding->alamat ?></h1>
+
+                                    Mohon kehadirannya pada :
+                                    <div >
+                                        <h2><?= DateToIndo($val->tanggal) ?></h2>
+                                        <h2>jam <?= $val->waktu ?></h2>
+                                        <h2>tempat <?= $val->tempat ?><br><?= $val->keperluan ?></h2>
                                     </div>
                                 </div>
                             </li>

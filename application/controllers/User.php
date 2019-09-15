@@ -41,11 +41,8 @@ class User extends CI_Controller {
         $post = $_POST;
         $id = $this->input->post("id");
 
-//        $data['user_group_id'] = $post['user_group'];
-//        $data['user_company'] = $post['user_company'];
         $data['user_real_name'] = $post['user_real_name'];
         $data['user_user_name'] = $post['user_user_name'];
-//        $data['user_password'] = md5($post['password']);
         $data['user_phone'] = $post['user_phone'];
         $data['user_email'] = $post['user_email'];
         $data['user_address'] = $post['user_address'];
@@ -80,10 +77,16 @@ class User extends CI_Controller {
             }
         }
         if (empty($id)) {
-            // print_r($data);
-            $this->db->insert("app_user", $data);
-            $msg = "Berhasil menambah user";
+            
         } else {
+
+            $keyp['id'] = $post['id_pengantin'];
+            $user['nama_lengkap'] = $post['user_real_name'];
+            $user['no_hp'] = $post['user_phone'];
+            $user['email'] = $post['user_email'];
+            $user['alamat_sekarang'] = $post['user_address'];
+            $this->db->update('pengantin', $user, $keyp);
+
             $key['user_id'] = $id;
             $this->db->update("app_user", $data, $key);
             $msg = "Berhasil merubah user";
@@ -129,6 +132,53 @@ class User extends CI_Controller {
         $key['user_id'] = $id;
         $this->db->delete("user", $key);
         redirect(base_url() . 'User', 'refresh');
+    }
+
+    public function prewed() {
+        $data['wedding'] = $this->db->query("SELECT id, prewed FROM wedding WHERE id = '" . $this->id_wedding . "'")->row();
+        render('user/prewed', $data);
+    }
+
+    public function savePrewed() {
+        $data['prewed'] = '';
+        if (isset($_FILES)) {
+            $path = realpath(APPPATH . '../../files/images/');
+
+            $this->upload->initialize(array(
+                'upload_path' => $path,
+                'allowed_types' => 'png|jpg|gif',
+                'max_size' => '15000',
+                'max_width' => '3000',
+                'max_height' => '3000'
+            ));
+
+            if ($this->upload->do_upload('prewed')) {
+                $data_upload = $this->upload->data();
+                $this->image_lib->initialize(array(
+                    'image_library' => 'gd2',
+                    'source_image' => $path . '/' . $data_upload['file_name'],
+                    'maintain_ratio' => false,
+                    //  'create_thumb' => true,
+                    'overwrite' => TRUE
+                ));
+                if ($this->image_lib->resize()) {
+                    $data['prewed'] = $data_upload['raw_name'] . $data_upload['file_ext'];
+                } else {
+                    $data['prewed'] = $data_upload['file_name'];
+                }
+            }
+            //echo $this->upload->display_errors();
+            if ($data['prewed'] != "") {
+                $key['id'] = $_POST['id_wedding'];
+                $this->db->update('wedding', $data, $key);
+                $result['code'] = 200;
+                echo json_encode($result);
+            }else{
+                $result['code'] = 400;
+                echo json_encode($result);
+                
+            }
+        }
     }
 
 }

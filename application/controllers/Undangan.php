@@ -43,7 +43,8 @@ class Undangan extends CI_Controller {
                 // 'id_pengantin' => $_POST[''],
                 'nama' => $_POST['nama_lengkap'],
                 'alamat' => $_POST['alamat_undangan'],
-                'tipe_undangan' => $_POST['tipe_undangan']
+                'tipe_undangan' => $_POST['tipe_undangan'],
+                'nohp' => $_POST['nohp_undangan']
             );
             $this->db->insert('undangan', $data);
             $this->wedding_model->insertLog($_POST['id_wedding'], "Menambah data undangan");
@@ -58,7 +59,8 @@ class Undangan extends CI_Controller {
                 // 'id_pengantin' => $_POST[''],
                 'nama' => $_POST['nama_lengkap'],
                 'alamat' => $_POST['alamat_undangan'],
-                'tipe_undangan' => $_POST['tipe_undangan']
+                'tipe_undangan' => $_POST['tipe_undangan'],
+                'nohp' => $_POST['nohp_undangan']
             );
             $this->db->update('undangan', $data, $key);
             $this->wedding_model->insertLog($_POST['id_wedding'], "Merubah data undangan");
@@ -67,6 +69,7 @@ class Undangan extends CI_Controller {
             );
             echo json_encode($result);
         }
+        exit();
     }
 
     public function delete() {

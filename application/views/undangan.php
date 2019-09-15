@@ -8,22 +8,26 @@
         <div class="page_content"> 
 
             <h3>Daftar Tamu Undangan</h3>
-            <ul class="features_list">
+            <ul class="features_list_detailed">
                 <?php
                 $no = 1;
                 if (!empty($undangan)) {
                     foreach ($undangan as $val) {
                         ?>
                         <li>
-                            <a href="#" data-transition="slidefade" class="ui-link">
-                                <span><img src="<?= base_url() ?>assets/images/icons/black/user.png" alt="" title="">&nbsp;&nbsp;<?= $val->nama ?></span></a>
-                            <div class="view_more"><a href="<?= base_url() ?>Undangan/delete?id=<?= $val->id ?>" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')" data-transition="slidedown" class="ui-link"><img src="<?= base_url() ?>assets/images/icons/black/menu_close.png" alt="" title="Delete Undangan"></a>
+                            <div class="feat_small_icon">
+                                <img src="<?= base_url() ?>assets/images/icons/black/user.png" alt="" title="" style="height: 30px">
+                            </div>
+                            <div class="feat_small_details">
+                                <?= $val->nama ?>
+                            </div>
+                            <div class="view_more" style=" position: absolute; right: 10px;margin-top: -10px; margin-bottom: 0"><a href="#" onclick="deleteUndangan('<?= $val->id ?>')" data-transition="slidedown" class="ui-link"><img src="<?= base_url() ?>assets/images/icons/black/menu_close.png" alt="" title="Delete Undangan"></a>
                             </div>
                         </li>
                         <?php
                     }
                 } else {
-                    echo "<tr><td colspan='7'>Data Vendor Masih Kosong</td></tr>";
+                    echo "<tr><td colspan='7'>Data Undangan Masih Kosong</td></tr>";
                 }
                 ?>
             </ul>
@@ -36,3 +40,33 @@
         </div>
     </div>
 </div>
+<script>
+    function deleteUndangan(id) {
+        $.confirm({
+            title: "CONFIRM",
+            content: "Apakah anda yakin akan menghapus data ini?",
+            icon: 'fa fa-question-circle',
+            animation: 'scale',
+            closeAnimation: 'scale',
+            opacity: 0.5,
+            buttons: {
+                'Confirm': {
+                    text: 'Confirm',
+                    btnClass: 'btn-warning',
+                    action: function () {
+                        $.ajax({
+                            url: "<?= base_url() ?>Undangan/delete?id=" + id,
+                            success: function (data) {
+                                window.location = "<?= base_url() ?>Undangan";
+                            }
+                        });
+                    }
+                },
+                cancel: function () {
+                    return false;
+                }
+            }
+        });
+
+    }
+</script>

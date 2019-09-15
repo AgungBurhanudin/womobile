@@ -22,3 +22,19 @@ function DateToIndo($date) {
     }
     return($result);
 }
+
+function toDMY($data) {
+    if ($data != "") {
+        return date('d-m-Y', strtotime($data));
+    } else {
+        return "";
+    }
+}
+
+function toYMD($data) {
+    if ($data != "") {
+        return date('d-m-Y', strtotime($data));
+    } else {
+        return "";
+    }
+}

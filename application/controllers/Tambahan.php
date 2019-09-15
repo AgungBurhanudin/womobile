@@ -40,7 +40,7 @@ class Tambahan extends CI_Controller {
                                 LEFT JOIN tambahan_tipe b ON a.id_tambahan_tipe = b.id 
                         WHERE a.id_wedding = '$id'
                         ORDER BY
-                                a.urutan ASC")->result()
+                                b.urutan ASC")->result()
         );
         render('paket/tambahan', $data);
     }

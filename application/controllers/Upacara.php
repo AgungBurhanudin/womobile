@@ -41,7 +41,7 @@ class Upacara extends CI_Controller {
                                 GROUP BY
                                         b.id_upacara 
                                 ORDER BY
-                                        a.urutan ASC")->result(),
+                                        b.urutan ASC")->result(),
             'upacara' => $this->db->query("SELECT
                                 a.*,
                                 b.id AS id_field,
@@ -52,7 +52,7 @@ class Upacara extends CI_Controller {
                                 LEFT JOIN upacara_tipe b ON a.id_upacara_tipe = b.id 
                         WHERE a.id_wedding = '$id'
                         ORDER BY
-                                a.urutan ASC")->result()
+                                b.urutan ASC")->result()
         );
         render('paket/upacara', $data);
     }
