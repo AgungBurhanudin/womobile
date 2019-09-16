@@ -221,9 +221,23 @@ class Dashboard extends CI_Controller {
             'vendor' => $this->db->query("SELECT a.*,b.nama_kategori FROM vendor_pengantin a "
                     . "LEFT JOIN kategori_vendor b "
                     . "ON a.id_kategori = b.id "
-                    . "WHERE a.id_wedding = '$id'")->result(),
+                    . "WHERE a.id_wedding = '$id' ORDER BY a.status ASC")->result(),
         );
         render('payment', $data);
+    }
+
+    public function detailPayment() {
+        $id_wedding = $this->id_wedding;
+        $id = $_GET['id'];
+        $data = array(
+            'id_wedding' => $id_wedding,
+            'payment' => $this->db->query("SELECT a.*,b.nama_kategori FROM vendor_pengantin a "
+                    . "LEFT JOIN kategori_vendor b "
+                    . "ON a.id_kategori = b.id "
+                    . "WHERE a.id_wedding = '$id_wedding' AND a.id='$id'")->row(),
+            'detail' => $this->db->query("SELECT * FROM payment WHERE id_vendor = '$id' ORDER BY tanggal_bayar ASC")->result()
+        );
+        render('detailPayment', $data);
     }
 
     public function editPayment() {
@@ -242,8 +256,22 @@ class Dashboard extends CI_Controller {
     public function doPayment() {
         $id_wedding = isset($_POST['id_wedding']) ? $_POST['id_wedding'] : "";
         $key['id'] = $_POST['id_payment_pengantin'];
+        $vendor = $this->db->get_where('vendor_pengantin', $key)->row();
+        $total_terbayar = $vendor->terbayar;
+        $total_biaya = $vendor->biaya;
+        $temp_terbayar = $total_terbayar + $_POST['terbayar'];
+        if($temp_terbayar >= $total_biaya){
+            $status = 2;
+        }else if($temp_terbayar < $total_biaya){
+            $status = 1;
+        }
+        $upvendor['status'] = $status;
+        $upvendor['terbayar'] = $temp_terbayar;
+        $this->db->update('vendor_pengantin', $upvendor, $key);
+        $data['id_vendor'] = $_POST['id_payment_pengantin'];
         $data = array(
-            'status' => $_POST['status_pembayaran'],
+            'id_vendor' => $_POST['id_payment_pengantin'],
+            'terbayar' => $_POST['terbayar'],
             'tanggal_bayar' => date('Y-m-d', strtotime($_POST['tanggal_bayar'])),
             'cara_pembayaran' => $_POST['cara'],
             'dibayarke' => $_POST['dibayarke']
@@ -273,7 +301,9 @@ class Dashboard extends CI_Controller {
                 }
             }
         }
-        $this->db->update('vendor_pengantin', $data, $key);
+        $data['status'] = 0;
+        
+        $this->db->insert('payment', $data);
         $this->wedding_model->insertLog($id_wedding, "Payment vendor " . $_POST['nama_vendor_payment']);
         $result = array(
             'code' => 200

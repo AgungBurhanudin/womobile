@@ -22,7 +22,7 @@
                     
                 </div>-->
         <div id="countdown">
-            <?= $wedding->nama_pria ?> <br> <?= $wedding->nama_wanita ?>
+            <?= $wedding->pengantin_pria ?> & <?= $wedding->pengantin_wanita ?>
         </div>
         <div style="clear: both"></div>
         <div class="page_content" style="margin-top: -60px"> 
@@ -34,6 +34,27 @@
                     <span class="icon-label">Biodata</span>
                 </div>
             </a>
+
+<a href="<?= base_url() ?>Dashboard/vendor">
+    <div class="icon-wrap">
+        <div>
+            <img src="<?= base_url() ?>assets/images/icons/black/team.png" alt="" title="" />
+
+        </div>
+        <span class="icon-label">Vendor</span>
+    </div>
+</a>
+
+<a href="<?= base_url() ?>Dashboard/layout">
+    <div class="icon-wrap">
+        <div>
+            <img src="<?= base_url() ?>assets/images/icons/black/docs.png" alt="" title="" />
+        </div>
+        <span class="icon-label">Lampiran</span>
+    </div>
+</a>
+
+            <div style="clear: both"></div>
             <a href="<?= base_url() ?>Dashboard/meeting">
                 <div class="icon-wrap">
                     <div>
@@ -43,18 +64,6 @@
                     <span class="icon-label">Meeting</span>
                 </div>
             </a>
-
-            <a href="<?= base_url() ?>Dashboard/vendor">
-                <div class="icon-wrap">
-                    <div>
-                        <img src="<?= base_url() ?>assets/images/icons/black/team.png" alt="" title="" />
-
-                    </div>
-                    <span class="icon-label">Vendor</span>
-                </div>
-            </a>
-
-            <div style="clear: both"></div>
 
             <a href="<?= base_url() ?>Dashboard/payment">
                 <div class="icon-wrap">
@@ -71,15 +80,6 @@
                         <img src="<?= base_url() ?>assets/images/icons/black/phone.png" alt="" title="" />
                     </div>
                     <span class="icon-label">Contact Us</span>
-                </div>
-            </a>
-
-            <a href="<?= base_url() ?>Dashboard/layout">
-                <div class="icon-wrap">
-                    <div>
-                        <img src="<?= base_url() ?>assets/images/icons/black/docs.png" alt="" title="" />
-                    </div>
-                    <span class="icon-label">Lampiran</span>
                 </div>
             </a>
             <br>

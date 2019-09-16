@@ -49,24 +49,24 @@
             dataType: "JSON",
             success: function (data) {
                 if (data.code == "200") {
-
-                    $.confirm({
-                        title: "SUCCESS",
-                        content: "Berhasil mengupload photo prewed",
-                        icon: 'fa fa-question-circle',
-                        animation: 'scale',
-                        closeAnimation: 'scale',
-                        opacity: 0.5,
-                        buttons: {
-                            'close': {
-                                text: 'Proceed',
-                                btnClass: 'btn-blue',
-                                action: function () {
-                                    window.location = "<?= base_url() ?>User/prewed";
-                                }
-                            }
-                        }
-                    });
+                    window.location = "<?= base_url() ?>User/prewed";
+                    // $.confirm({
+                    //     title: "SUCCESS",
+                    //     content: "Berhasil mengupload photo prewed",
+                    //     icon: 'fa fa-question-circle',
+                    //     animation: 'scale',
+                    //     closeAnimation: 'scale',
+                    //     opacity: 0.5,
+                    //     buttons: {
+                    //         'close': {
+                    //             text: 'Proceed',
+                    //             btnClass: 'btn-blue',
+                    //             action: function () {
+                    //                 window.location = "<?= base_url() ?>User/prewed";
+                    //             }
+                    //         }
+                    //     }
+                    // });
                 } else {
 
                 }

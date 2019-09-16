@@ -3,12 +3,12 @@
     <div class="pages_maincontent">
         <h2 class="page_title">Form Payment</h2> 
         <div style="float: right;margin-top: 15px;margin-right: 15px">
-            <a href="<?= base_url() ?>Dashboard/payment"  class="ui-link"><img src="<?= base_url() ?>assets/images/icons/black/menu_close.png" alt="" title="" height="30px"></a>
+            <a href="<?= base_url() ?>Dashboard/detailPayment?id=<?= $payment->id ?>"  class="ui-link"><img src="<?= base_url() ?>assets/images/icons/black/menu_close.png" alt="" title="" height="30px"></a>
         </div>
         <div class="page_content"> 
             <form class="form-horizontal" action="#" id="formPaymentVendor" method="post">
                 <input type="hidden" class="id_wedding" name="id_wedding" value="<?= $id_wedding ?>">
-                <input type="hidden" name="id_payment_pengantin" id="id_payment_pengantin" value="">                    
+                <input type="hidden" name="id_payment_pengantin" id="id_payment_pengantin">                    
                 <div class="form-group row">
                     <label class="col-md-3 col-form-label" for="hf-email">Nama Vendor</label>
                     <div class="col-md-9">
@@ -31,6 +31,12 @@
                     <label class="col-md-3 col-form-label">Biaya</label>
                     <div class="col-md-9">
                         <input readonly="readonly" name="biaya_payment" id="biaya_payment" type="text" required="required" class="form_input" data-role="none" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label">Total Pembayaran</label>
+                    <div class="col-md-9">
+                        <input name="terbayar" id="terbayar" type="number" required="required" class="form_input" data-role="none" />
                     </div>
                 </div>
                 <div class="form-group row">
@@ -70,7 +76,7 @@
                         <span id="bukti_download"></span>
                     </div>
                 </div>
-                <div class="form-group row">
+                <!-- <div class="form-group row">
                     <label class="col-md-3 col-form-label">Status Pembayaran</label>
                     <div class="col-md-9">
                         <select class="form_input" data-role="none" name="status_pembayaran" id="status_pembayaran">
@@ -81,7 +87,7 @@
                             <option value="3">Lunas</option>
                         </select>
                     </div>
-                </div>
+                </div> -->
                 <div class="form-group row">
                     <label class="col-md-3 col-form-label"></label>
                     <div class="col-md-9">
@@ -99,6 +105,7 @@
     function simpanPaymentVendor() {
 //        var formData = new FormData($("#formVendor")[0]);
 //        var formData = $("#formVendor").serialize();
+        var id = $("#id_payment_pengantin").val();
         var formData = new FormData($("#formPaymentVendor")[0]);
         $.ajax({
             type: 'POST',
@@ -112,7 +119,7 @@
                     swal("success", "Berhasil menambah pembayaran!");
 
                     setTimeout(function () {
-                        window.location = "<?= base_url() ?>Dashboard/payment";
+                        window.location = "<?= base_url() ?>Dashboard/detailPayment?id="+id;
                     }, 1000);
 
                 } else {
@@ -129,12 +136,13 @@
         $("#biaya_payment").val('<?= $payment->biaya ?>');
         $("#bayar_oleh").val('<?= $payment->dibayaroleh ?>');
         $("#dibayarke").val('<?= $payment->dibayarke ?>');
+        $("#terbayar").val('<?= $payment->terbayar ?>');
 
         $("#cara").val('<?= $payment->cara_pembayaran ?>');
         $("#tanggal_bayar").val('<?= $payment->tanggal_bayar ?>');
         var bukti = '<?= $payment->bukti ?>';
         if (bukti != "" & bukti != null) {
-            $("#bukti_download").html("<a href='<?= base_url() ?>/files/bukti/<?= $payment->bukti ?>'>Download</a>");
+            $("#bukti_download").html("<a href='<?= base_url() ?>../files/bukti/<?= $payment->bukti ?>'>Download</a>");
         }
         $("#status_pembayaran").val('<?= $payment->status ?>');
     });

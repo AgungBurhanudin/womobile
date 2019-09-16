@@ -189,15 +189,15 @@
                 #countdown{
                     margin: 0 auto;
                     position: relative;
-                    top: -120px;
-                    height: 80px;
+                    top: -105px;
+                    height: 50px;
                     width: 80%;
                     text-align: center;
                     border-radius: 10px;
                     font-size: 25px;
                     vertical-align: middle;
                     padding-top: 0px;
-                    line-height: 35px;background-color: #eec0c6;
+                    line-height: 50px;background-color: #eec0c6;
                     background-image: linear-gradient(315deg, #eec0c6 0%, #7ee8fa 74%);
                     color:black;
                     font-weight: bold;
@@ -268,7 +268,7 @@
                 .labelCountDown{
                     margin: 0 auto;
                     position: relative;
-                    top: 20px;
+                    top: 0px;
                     text-align: center;
                     font-size: 19px;
                     vertical-align: middle;
