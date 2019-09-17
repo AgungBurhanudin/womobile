@@ -26,7 +26,7 @@ class Dashboard extends CI_Controller {
             'logs' => $this->db->query("SELECT a.*,b.user_real_name  FROM log_aktivitas a "
                     . "LEFT JOIN app_user b "
                     . "ON a.id_user = b.user_id "
-                    . "WHERE a.id_wedding = '$this->id_wedding' ORDER BY datetime DESC LIMIT 10")->result(),
+                    . "WHERE a.id_wedding = '$this->id_wedding' AND b.user_group_id = '37' ORDER BY datetime DESC LIMIT 5")->result(),
         );
         render('dashboard', $data);
     }

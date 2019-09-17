@@ -44,7 +44,7 @@ class Login extends CI_Controller {
                 $reply['code'] = '401';
                 $reply['message'] = 'Anda tidak punya akses di halaman ini';
                 $this->load->view('login', $reply);
-            } else {
+            } else if ($arr_cek->user_active == 1) {
                 if ($passwd == md5($post['password'])) {
                     //login sukses
                     $reply['code'] = '200';
@@ -77,6 +77,10 @@ class Login extends CI_Controller {
                     $this->load->view('login', $reply);
 //                exit();
                 }
+            } else {
+                $reply['code'] = '401';
+                $reply['message'] = 'User anda sudah tidak memiliki akses ke aplikasi ini';
+                $this->load->view('login', $reply);
             }
         } else {
             $reply['code'] = '401';

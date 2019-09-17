@@ -15,7 +15,7 @@
                 <?php
             }
             ?>
-            
+
         </div>
         <div class="labelCountDown" id="countdownLabel">-- Hari -- Jam</div>
         <!--        <div class="heart">
@@ -35,24 +35,24 @@
                 </div>
             </a>
 
-<a href="<?= base_url() ?>Dashboard/vendor">
-    <div class="icon-wrap">
-        <div>
-            <img src="<?= base_url() ?>assets/images/icons/black/team.png" alt="" title="" />
+            <a href="<?= base_url() ?>Dashboard/vendor">
+                <div class="icon-wrap">
+                    <div>
+                        <img src="<?= base_url() ?>assets/images/icons/black/team.png" alt="" title="" />
 
-        </div>
-        <span class="icon-label">Vendor</span>
-    </div>
-</a>
+                    </div>
+                    <span class="icon-label">Vendor</span>
+                </div>
+            </a>
 
-<a href="<?= base_url() ?>Dashboard/layout">
-    <div class="icon-wrap">
-        <div>
-            <img src="<?= base_url() ?>assets/images/icons/black/docs.png" alt="" title="" />
-        </div>
-        <span class="icon-label">Lampiran</span>
-    </div>
-</a>
+            <a href="<?= base_url() ?>Dashboard/layout">
+                <div class="icon-wrap">
+                    <div>
+                        <img src="<?= base_url() ?>assets/images/icons/black/docs.png" alt="" title="" />
+                    </div>
+                    <span class="icon-label">Lampiran</span>
+                </div>
+            </a>
 
             <div style="clear: both"></div>
             <a href="<?= base_url() ?>Dashboard/meeting">
@@ -89,12 +89,18 @@
             <h3>Aktivitas Terakhir</h3>
             <ul class="features_list">
                 <?php
-                foreach ($logs as $l) {
-                    ?>
-                    <li><a href="#" data-transition="slidefade" class="ui-link"><span> > <?= $l->user_real_name ?> <?= $l->deskripsi ?></span></a></li>
+                $no = 1;
+                if (!empty($logs)) {
+                    foreach ($logs as $val) {
+                        ?>
+                        <li><a href="#" data-transition="slidefade" class="ui-link"><span><img src="<?= base_url() ?>assets/images/icons/black/user.png" alt="" title="">&nbsp;&nbsp;<?= DateToIndo($val->datetime) ?><br>&nbsp;&nbsp;<?= $val->user_real_name ?> <?= $val->deskripsi ?></span></a></li>
+
                         <?php
                     }
-                    ?>
+                } else {
+                    echo "<tr><td colspan='7'>Data Log Aktifitas Masih Kosong</td></tr>";
+                }
+                ?>
             </ul>
         </div>
     </div>

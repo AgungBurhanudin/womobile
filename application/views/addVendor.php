@@ -27,7 +27,7 @@
                 <div class="form-group row">
                     <label class="col-md-3 col-form-label">Vendor Yang Tersedia </label>
                     <div class="col-md-9">
-                        <select class="form_input" data-role="none" name="vendor" id="vendorcombobox" onchange=getVendor(this.value)">
+                        <select class="form_input" data-role="none" name="vendor" id="vendorcombobox" onchange="setVendor(this.value)">
                             <option value=""><?php foreach ($vendor as $v) { ?>
                                 <option value="<?= $v->id ?>"><?= $v->vendor ?></option> <?php } ?></option>
                         </select>
@@ -96,6 +96,34 @@
             url: "<?= base_url() ?>Combobox/vendor?kategori=" + kategori,
             success: function (data) {
                 $("#vendorcombobox").html(data);
+            }
+        });
+    }
+
+    function setVendor(id) {
+        $.ajax({
+            url: "<?= base_url() ?>Combobox/getVendor?id=" + id,
+            dataType: "JSON",
+            success: function (data) {
+                if (data.vendor != "") {
+                    $("#nama_vendor").val(data.vendor);
+                    $("#nama_vendor").attr('readonly','readonly');
+                }else{
+                    $("#nama_vendor").removeAttr('readonly');
+                }
+                if (data.cp != "") {
+                    $("#cp").val(data.cp);
+                    $("#cp").attr('readonly','readonly');
+                }else{
+                    $("#cp").removeAttr('readonly');
+                }
+                if (data.nohp_cp != "") {
+                    $("#nohp").val(data.nohp_cp);
+                    $("#nohp").attr('readonly','readonly');
+                }else{
+                    $("#nohp").removeAttr('readonly');
+                }
+
             }
         });
     }
