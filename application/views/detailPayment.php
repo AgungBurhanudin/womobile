@@ -191,9 +191,9 @@
                                                 <?php
                                                 if ($d->status == 0) {
                                                     echo "MENUNGGU KONFIRMASI PEMBAYARAN";
-                                                } else if ($d->status == 2) {
+                                                } else if ($d->status == 1) {
                                                     echo "TERKONFIRMASI";
-                                                } else if ($d->status == 3) {
+                                                } else if ($d->status == 2) {
                                                     echo "PEMBAYARAN GAGAL";
                                                 }
                                                 ?></b>
