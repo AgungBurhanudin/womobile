@@ -266,7 +266,7 @@ class Dashboard extends CI_Controller {
             $status = 1;
         }
         $upvendor['status'] = $status;
-        $upvendor['terbayar'] = $temp_terbayar;
+//        $upvendor['terbayar'] = $temp_terbayar;
         $this->db->update('vendor_pengantin', $upvendor, $key);
         $data['id_vendor'] = $_POST['id_payment_pengantin'];
         $data = array(

@@ -39,12 +39,12 @@
                         <input name="nama_vendor" id="nama_vendor" type="text" required="required" class="form_input" data-role="none" placeholder="" />
                     </div>
                 </div>
-                <div class="form-group row">
+<!--                <div class="form-group row">
                     <label class="col-md-3 col-form-label">Alamat </label>
                     <div class="col-md-9">
                         <input name="alamat" id="alamat" type="text" required="required" class="form_input" data-role="none" />
                     </div>
-                </div>
+                </div>-->
                 <div class="form-group row">
                     <label class="col-md-3 col-form-label">CP </label>
                     <div class="col-md-9">
@@ -54,7 +54,7 @@
                 <div class="form-group row">
                     <label class="col-md-3 col-form-label">No Telepone</label>
                     <div class="col-md-9">
-                        <input name="nohp" id="nohp" type="number" required="required" class="form_input" data-role="none" />
+                        <input name="nohp" id="nohp_vendor" type="number" required="required" class="form_input" data-role="none" />
                     </div>
                 </div>
                 <div class="form-group row">
@@ -118,10 +118,10 @@
                     $("#cp").removeAttr('readonly');
                 }
                 if (data.nohp_cp != "") {
-                    $("#nohp").val(data.nohp_cp);
-                    $("#nohp").attr('readonly','readonly');
+                    $("#nohp_vendor").val(data.nohp_cp);
+                    $("#nohp_vendor").attr('readonly','readonly');
                 }else{
-                    $("#nohp").removeAttr('readonly');
+                    $("#nohp_vendor").removeAttr('readonly');
                 }
 
             }

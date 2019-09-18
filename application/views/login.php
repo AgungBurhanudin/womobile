@@ -60,7 +60,7 @@
                             <input type="text" name="username" value="" class="form_input required" placeholder="username" data-role="none" />
                             <input type="password" name="password" id="password-field" value="" class="form_input required" placeholder="password" data-role="none" />
                             <!--<span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password">dsds</span>-->
-                            <div class="forgot_pass"><a href="#" data-transition="slidedown">Forgot Password?</a></div>
+                            <!--<div class="forgot_pass"><a href="#" data-transition="slidedown">Forgot Password?</a></div>-->
                             <input type="submit" name="submit"  class="form_submit" id="submit" data-role="none" value="SIGN IN" style="background-color: #9f2b23" />
                         </form>
 

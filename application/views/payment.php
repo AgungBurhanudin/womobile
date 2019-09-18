@@ -1,5 +1,7 @@
 <style>
-
+    .invoice{
+        margin-bottom: 10px;
+    }
     .invoice .head{
         width: 100%;
         height: 35px;
