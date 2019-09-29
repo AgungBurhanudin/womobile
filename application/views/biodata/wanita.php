@@ -78,7 +78,7 @@ if (!empty($wanita)) {
 
 
                 <label class="control-label">Tanggal Lahir Pengantin Wanita</label>
-                <input name="tanggal_lahir_wanita" id="tanggal_lahir_wanita" type="text"  class="form_input required  datepicker-less" data-role="none" />
+                <input name="tanggal_lahir_wanita" id="tanggal_lahir_wanita" type="date"  class="form_input required  datepicker-less" data-role="none" />
 
 
                 <label class="control-label">No Hp Pengantin Wanita</label>
@@ -118,8 +118,11 @@ if (!empty($wanita)) {
                 <input name="hobi_wanita" id="hobi_wanita" type="text"  class="form_input required" data-role="none" />
 
 
-                <label class="control-label">Sosmed Pengantin Wanita</label>
+                <label class="control-label">Akun Facebook Pengantin Wanita</label>
                 <input name="sosmed_wanita" id="sosmed_wanita" type="text"  class="form_input required" data-role="none" />
+
+                <label class="control-label">Akun Instagram Pengantin Wanita</label>
+                <input name="instagram_wanita" id="instagram_wanita" type="text"  class="form_input required" data-role="none" />
                 <button type="submit" onclick="simpanBioWanita()">Simpan</button>
             </form>
         </div>        

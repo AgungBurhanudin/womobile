@@ -85,7 +85,7 @@ if (!empty($pria)) {
 
                 <div>
                     <label class="control-label">Tanggal Lahir Pengantin Pria</label>
-                    <input name="tanggal_lahir_pria" id="tanggal_lahir_pria" type="text" required="required" class="form_input datepicker-less" data-role="none" />
+                    <input name="tanggal_lahir_pria" id="tanggal_lahir_pria" type="date" required="required" class="form_input datepicker-less" data-role="none" />
                 </div>
                 <div>
                     <label class="control-label">No Hp Pengantin Pria</label>
@@ -128,8 +128,12 @@ if (!empty($pria)) {
                     <input name="hobi_pria" id="hobi_pria" type="text" required="required" class="form_input" data-role="none" />
                 </div>
                 <div>
-                    <label class="control-label">Sosmed Pengantin Pria</label>
+                    <label class="control-label">Akun Facebook Pengantin Pria</label>
                     <input name="sosmed_pria" id="sosmed_pria" type="text" required="required" class="form_input" data-role="none" />
+                </div>
+                <div>
+                    <label class="control-label">Akun Instagram Pengantin Pria</label>
+                    <input name="instagram_pria" id="instagram_pria" type="text" required="required" class="form_input" data-role="none" />
                 </div>
                 <button class="btn btn-primary nextBtn pull-right" onclick="simpanBioPria()" type="submit">Simpan</button>
             </form>

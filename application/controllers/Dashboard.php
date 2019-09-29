@@ -57,7 +57,8 @@ class Dashboard extends CI_Controller {
         $data['agama'] = $_POST['agama_pria'];
         $data['pendidikan'] = $_POST['pendidikan_pria'];
         $data['hobi'] = $_POST['hobi_pria'];
-        $data['sosmed'] = 1;
+        $data['sosmed'] = $_POST['sosmed_pria'];
+        $data['instagram'] = $_POST['instagram_pria'];
         $data['status'] = 1;
 
         if (isset($_FILES)) {
@@ -116,6 +117,7 @@ class Dashboard extends CI_Controller {
         $data['pendidikan'] = $_POST['pendidikan_wanita'];
         $data['hobi'] = $_POST['hobi_wanita'];
         $data['sosmed'] = $_POST['sosmed_wanita'];
+        $data['instagram'] = $_POST['instagram_wanita'];
         $data['status'] = 1;
         if (isset($_FILES)) {
             $path = realpath(APPPATH . '../../files/images/');

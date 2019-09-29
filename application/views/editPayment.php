@@ -62,7 +62,7 @@
                 <div class="form-group row">
                     <label class="col-md-3 col-form-label">Tanggal Pembayaran</label>
                     <div class="col-md-9">
-                        <input name="tanggal_bayar" id="tanggal_bayar" type="text" required="required" class="form_input datepicker" data-role="none" />
+                        <input name="tanggal_bayar" id="tanggal_bayar" type="date" required="required" class="form_input datepicker" data-role="none" />
                     </div>
                 </div>
                 <div class="form-group row">
