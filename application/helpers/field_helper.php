@@ -70,7 +70,7 @@ function Form($nameInputPrefix, $id, $name, $value, $type, $ukuran, $is_wajib, $
             if ($ukuran == $value) {
                 $checked = "checked='checked'";
             }
-            $field_input = '<br><label><input type="checkbox" ' . $checked . ' onchange="save' . $form . '(' . $id . ', ' . "'$nameInputPrefix" . "$id '" . ', ' . "'checkbox'" . ')" value="' . $ukuran . '"  name="' . $nameInputPrefix . $id . '" id="' . $nameInputPrefix . $id . '" value="' . $value . '" ' . $tagWajib . ' />  ' . $ukuran . $tagBintang . '</label>';
+            $field_input = '<br><label><input type="checkbox" ' . $checked . ' onchange="save' . $form . '(' . $id . ', ' . "'$nameInputPrefix" . "$id'" . ', ' . "'checkbox'" . ')" value="1"  name="' . $nameInputPrefix . $id . '" id="' . $nameInputPrefix . $id . '" value="' . $value . '" ' . $tagWajib . ' />  ' . $ukuran . $tagBintang . '</label>';
 
             break;
         case 'addabletext':

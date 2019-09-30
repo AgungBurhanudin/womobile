@@ -55,6 +55,15 @@
                 success: function (data) {
                 }
             });
+        } else if (type == "checkbox"){
+            dataForm = "id=" + id + "&value=" + value + "&id_wedding=" + id_wedding;
+            $.ajax({
+                url: "<?= base_url() ?>Wedding/acara/add",
+                type: "POST",
+                data: dataForm,
+                success: function (data) {
+                }
+            });
         } else {
             dataForm = "id=" + id + "&value=" + value + "&id_wedding=" + id_wedding;
             $.ajax({
@@ -64,6 +73,6 @@
                 success: function (data) {
                 }
             });
-    }
+        }
     }
 </script>

@@ -15,6 +15,7 @@ if (!empty($pria)) {
     $pendidikan = $pria->pendidikan;
     $hobi = $pria->hobi;
     $sosmed = $pria->sosmed;
+    $instagram = $pria->instagram;
     $status = $pria->status;
     $photo = $pria->photo;
     if ($photo == "") {
@@ -39,6 +40,7 @@ if (!empty($pria)) {
     $pendidikan = "";
     $hobi = "";
     $sosmed = "";
+    $instagram = "";
     $status = "";
     $photo = "user.jpg";
 }
@@ -85,7 +87,7 @@ if (!empty($pria)) {
 
                 <div>
                     <label class="control-label">Tanggal Lahir Pengantin Pria</label>
-                    <input name="tanggal_lahir_pria" id="tanggal_lahir_pria" type="date" required="required" class="form_input datepicker-less" data-role="none" />
+                    <input name="tanggal_lahir_pria" id="tanggal_lahir_pria" type="date" required="required" class="form_input" data-role="none" />
                 </div>
                 <div>
                     <label class="control-label">No Hp Pengantin Pria</label>
@@ -151,13 +153,14 @@ if (!empty($pria)) {
     $("#alamat_sekarang_pria").val('<?= $alamat_sekarang ?>');
     $("#alamat_nikah_pria").val('<?= $alamat_nikah ?>');
     $("#tempat_lahir_pria").val('<?= $tempat_lahir ?>');
-    $("#tanggal_lahir_pria").val('<?= toDMY($tanggal_lahir) ?>');
+    $("#tanggal_lahir_pria").val('<?= toYMD($tanggal_lahir) ?>');
     $("#no_hp_pria").val('<?= $no_hp ?>');
     $("#email_pria").val('<?= $email ?>');
     $("#agama_pria").val('<?= $agama ?>');
     $("#pendidikan_pria").val('<?= $pendidikan ?>');
     $("#hobi_pria").val('<?= $hobi ?>');
     $("#sosmed_pria").val('<?= $sosmed ?>');
+    $("#instagram_pria").val('<?= $instagram ?>');
     $("#status_pria").val('<?= $status ?>');
     $("#photoPria").attr('style', 'background: url(<?= base_url() . "/files/images/" . $photo ?>) no-repeat center center; background-size:cover;');
 
@@ -175,7 +178,25 @@ if (!empty($pria)) {
                     dataType: "JSON",
                     success: function (data) {
                         if (data.code == "200") {
-                            alert("Berhasil menambah vendor!");
+                            // alert("Berhasil menambah vendor!");
+
+                            $.confirm({
+                                title: "SUCCESS",
+                                content: "Berhasil memperbarui biodata",
+                                icon: 'fa fa-question-circle',
+                                animation: 'scale',
+                                closeAnimation: 'scale',
+                                opacity: 0.5,
+                                buttons: {
+                                    'close': {
+                                        text: 'Proceed',
+                                        btnClass: 'btn-blue',
+                                        action: function () {
+                                            window.location = "<?= base_url() ?>Dashboard/biodata";
+                                        }
+                                    }
+                                }
+                            });
                         } else {
                             alert("Gagal menambah vendor!");
                         }

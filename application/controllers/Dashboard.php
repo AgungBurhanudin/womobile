@@ -94,6 +94,19 @@ class Dashboard extends CI_Controller {
         }
         $key['id'] = $_POST['id'];
         $this->db->update('pengantin', $data, $key);
+        
+        $user['user_real_name'] = $_POST['nama_lengkap_pria'];
+        $user['user_email'] = $_POST['email_pria'];
+        $user['user_address'] = $_POST['alamat_sekarang_pria'];
+        $user['user_phone'] = $_POST['no_hp_pria'];
+        $key_user['id_pengantin'] = $_POST['id'];
+        $key_user['id_wedding'] = $_POST['id_wedding'];
+        $this->db->update('app_user', $user, $key_user);
+
+        $wedding_update['pengantin_pria'] = $_POST['nama_panggilan_pria'];
+        $key_wedding['id'] = $id;
+        $this->db->update('wedding', $wedding_update, $key_wedding);
+
         $this->wedding_model->insertLog($id, "Merubah biodata pengantin pria");
         $result = array('code' => 200);
         echo json_encode($result);
@@ -152,6 +165,20 @@ class Dashboard extends CI_Controller {
         }
         $key['id'] = $_POST['id'];
         $this->db->update('pengantin', $data, $key);
+
+
+        $user['user_real_name'] = $_POST['nama_lengkap_wanita'];
+        $user['user_email'] = $_POST['email_wanita'];
+        $user['user_address'] = $_POST['alamat_sekarang_wanita'];
+        $user['user_phone'] = $_POST['no_hp_wanita'];
+        $key_user['id_pengantin'] = $_POST['id'];
+        $key_user['id_wedding'] = $_POST['id_wedding'];
+        $this->db->update('app_user', $user, $key_user);
+
+        $wedding_update['pengantin_wanita'] = $_POST['nama_panggilan_wanita'];
+        $key_wedding['id'] = $_POST['id_wedding'];
+        $this->db->update('wedding', $wedding_update, $key_wedding);
+
         $this->wedding_model->insertLog($id, "Merubah biodata pengantin pria");
         $result = array('code' => 200);
         echo json_encode($result);

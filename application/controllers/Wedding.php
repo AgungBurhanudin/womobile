@@ -8,9 +8,18 @@ require_once dirname(__FILE__) . '/../libraries/PHPExcelTemplate/samples/Bootstr
 
 class Wedding extends CI_Controller {
 
+    public $auth;
+    public $group;
+    public $id_company;
+    public $id_wedding;
+
     public function __construct() {
         parent::__construct();
         $this->load->model(array('wedding_model'));
+        $this->auth = $this->session->userdata('auth');
+        $this->group = $this->auth['group'];
+        $this->id_company = $this->auth['company'];
+        $this->id_wedding = $this->auth['id_wedding'];
         $this->load->library('form_validation');
         $this->PhpExcelTemplator = new alhimik1986\PhpExcelTemplator\PhpExcelTemplator;
 //        checkToken();
@@ -355,10 +364,11 @@ class Wedding extends CI_Controller {
 
     public function upacara() {
         $uri = $this->uri->segment(3);
+        $id_wedding = $this->id_wedding;
         $id = isset($_GET['id']) ? $_GET['id'] : "";
         if ($uri == "field") {
             $field = $this->db->query("SELECT a.*,b.value FROM upacara_field a "
-                            . "LEFT JOIN upacara_data b ON b.id_upacara_field = a.id "
+                            . "LEFT JOIN (SELECT * FROM upacara_data WHERE id_wedding ='$id_wedding') b ON b.id_upacara_field = a.id "
                             . "WHERE a.id_upacara_tipe = '$id' "
                             . "ORDER BY a.urutan ASC")->result();
             $data = array(
@@ -398,10 +408,11 @@ class Wedding extends CI_Controller {
 
     public function acara() {
         $uri = $this->uri->segment(3);
+        $id_wedding = $this->id_wedding;
         $id = isset($_GET['id']) ? $_GET['id'] : "";
         if ($uri == "field") {
             $field = $this->db->query("SELECT a.*,b.value FROM acara_field a "
-                            . "LEFT JOIN acara_data b  "
+                            . "LEFT JOIN (SELECT * FROM acara_data WHERE id_wedding = '$id_wedding') b  "
                             . "ON a.id = b.id_acara_field "
                             . "WHERE a.id_acara_tipe = '$id' "
                             . "ORDER BY a.urutan ASC")->result();
@@ -441,10 +452,11 @@ class Wedding extends CI_Controller {
 
     public function panitia() {
         $uri = $this->uri->segment(3);
+        $id_wedding = $this->id_wedding;
         $id = isset($_GET['id']) ? $_GET['id'] : "";
         if ($uri == "field") {
             $field = $this->db->query("SELECT a.*,b.value FROM panitia_field a "
-                            . "LEFT JOIN panitia_data b  "
+                            . "LEFT JOIN (SELECT * FROM panitia_data WHERE id_wedding = '$id_wedding') b  "
                             . "ON a.id = b.id_panitia_field "
                             . "WHERE a.id_panitia_tipe = '$id' "
                             . "ORDER BY a.urutan ASC")->result();
@@ -483,11 +495,12 @@ class Wedding extends CI_Controller {
     }
 
     public function tambahan() {
+        $id_wedding = $this->id_wedding;
         $uri = $this->uri->segment(3);
         $id = isset($_GET['id']) ? $_GET['id'] : "";
         if ($uri == "field") {
             $field = $this->db->query("SELECT a.*,b.value FROM tambahan_field a "
-                            . "LEFT JOIN tambahan_data b  "
+                            . "LEFT JOIN (SELECT * FROM tambahan_data WHERE id_wedding = '$id_wedding') b  "
                             . "ON a.id = b.id_tambahan_field "
                             . "WHERE id_tambahan_tipe = '$id' "
                             . "ORDER BY urutan ASC")->result();

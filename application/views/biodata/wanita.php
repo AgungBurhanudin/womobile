@@ -15,6 +15,7 @@ if (!empty($wanita)) {
     $pendidikan = $wanita->pendidikan;
     $hobi = $wanita->hobi;
     $sosmed = $wanita->sosmed;
+    $instagram = $wanita->instagram;
     $status = $wanita->status;
     $photo = $wanita->photo;
     if ($photo == "") {
@@ -39,6 +40,7 @@ if (!empty($wanita)) {
     $pendidikan = "";
     $hobi = "";
     $sosmed = "";
+    $instagram = "";
     $status = "";
     $photo = "user.jpg";
 }
@@ -78,7 +80,7 @@ if (!empty($wanita)) {
 
 
                 <label class="control-label">Tanggal Lahir Pengantin Wanita</label>
-                <input name="tanggal_lahir_wanita" id="tanggal_lahir_wanita" type="date"  class="form_input required  datepicker-less" data-role="none" />
+                <input name="tanggal_lahir_wanita" id="tanggal_lahir_wanita" type="date"  class="form_input required" data-role="none" />
 
 
                 <label class="control-label">No Hp Pengantin Wanita</label>
@@ -139,13 +141,14 @@ if (!empty($wanita)) {
     $("#alamat_sekarang_wanita").val('<?= $alamat_sekarang ?>');
     $("#alamat_nikah_wanita").val('<?= $alamat_nikah ?>');
     $("#tempat_lahir_wanita").val('<?= $tempat_lahir ?>');
-    $("#tanggal_lahir_wanita").val('<?= toDMY($tanggal_lahir) ?>');
+    $("#tanggal_lahir_wanita").val('<?= toYMD($tanggal_lahir) ?>');
     $("#no_hp_wanita").val('<?= $no_hp ?>');
     $("#email_wanita").val('<?= $email ?>');
     $("#agama_wanita").val('<?= $agama ?>');
     $("#pendidikan_wanita").val('<?= $pendidikan ?>');
     $("#hobi_wanita").val('<?= $hobi ?>');
     $("#sosmed_wanita").val('<?= $sosmed ?>');
+    $("#instagram_wanita").val('<?= $instagram ?>');
     $("#status_wanita").val('<?= $status ?>');
     $("#photoWanita").attr('style', 'background: url(<?= base_url() . "/files/images/" . $photo ?>) no-repeat center center; background-size:cover;');
 
@@ -162,7 +165,25 @@ if (!empty($wanita)) {
                     dataType: "JSON",
                     success: function (data) {
                         if (data.code == "200") {
-                            alert("Berhasil merubah biodata!");
+                            // alert("Berhasil merubah biodata!");
+
+                            $.confirm({
+                                title: "SUCCESS",
+                                content: "Berhasil memperbarui biodata",
+                                icon: 'fa fa-question-circle',
+                                animation: 'scale',
+                                closeAnimation: 'scale',
+                                opacity: 0.5,
+                                buttons: {
+                                    'close': {
+                                        text: 'Proceed',
+                                        btnClass: 'btn-blue',
+                                        action: function () {
+                                            window.location = "<?= base_url() ?>Dashboard/biodata";
+                                        }
+                                    }
+                                }
+                            });
                         } else {
                             alert("Gagal merubah biodata!");
                         }
