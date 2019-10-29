@@ -94,7 +94,8 @@ class Login extends CI_Controller {
     public function logout() {
         $this->session->unset_userdata('auth');
         $this->session->sess_destroy();
-        header("location:" . base_url() . "Login");
+        redirect(base_url(). "Login");
+        // header("location:" . base_url() . "Login");
     }
 
 }

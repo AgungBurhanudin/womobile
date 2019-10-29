@@ -105,9 +105,9 @@
                 $(".datepicker").datepicker({
                     dateFormat: 'dd-mm-yy'
                 });
-//                $(".onlynumber").keypress({
-//                    return isNumberKey(this);
-//                });
+            //    $(".onlynumber").keypress({
+            //        return isNumberKey(this);
+            //    });
             });
         </script>
 

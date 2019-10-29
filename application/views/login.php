@@ -12,12 +12,18 @@
         <meta name="keywords" content="Wedding Organizer Aplication" />
         <title>Wedding Organizer</title>
         <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700,900' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="<?= base_url() ?>assets/css/themes/default/jquery.mobile-1.4.5.css">
-        <link type="text/css" rel="stylesheet" href="<?= base_url() ?>assets/style.css" />
-        <link type="text/css" rel="stylesheet" href="<?= base_url() ?>assets/css/colors/yellow.css" />
-        <link type="text/css" rel="stylesheet" href="<?= base_url() ?>assets/css/swipebox.css" />
+        <link rel="stylesheet" href="<?=base_url()?>assets/css/themes/default/jquery.mobile-1.4.5.css">
+        <link type="text/css" rel="stylesheet" href="<?=base_url()?>assets/style.css" />
+        <link type="text/css" rel="stylesheet" href="<?=base_url()?>assets/css/colors/yellow.css" />
+        <link type="text/css" rel="stylesheet" href="<?=base_url()?>assets/css/swipebox.css" />
     </head>
     <body>
+        <script src="<?=base_url()?>assets/js/jquery.min.js"></script>
+        <script src="<?=base_url()?>assets/js/jquery.mobile-1.4.5.min.js"></script>
+        <script src="<?=base_url()?>assets/js/jquery.validate.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="<?=base_url()?>assets/js/email.js"></script>
+        <script type="text/javascript" src="<?=base_url()?>assets/js/jquery.swipebox.js"></script>
+        <script src="<?=base_url()?>assets/js/jquery.mobile-custom.js"></script>
         <style>
             .field-icon {
                 float: right;
@@ -42,21 +48,21 @@
                     <div class="form_logo">
                         <center>
                             <br><br><br>
-                            <img src="<?= base_url() ?>assets/images/logo_mahkota.png" width="85%" style="margin: 0 auto"> 
+                            <img src="<?=base_url()?>assets/images/logo_mahkota.png" width="85%" style="margin: 0 auto">
                         </center>LOGIN</div>
 
                     <div class="loginform">
                         <?php
-                        if (isset($message)) {
-                            ?>
+if (isset($message)) {
+    ?>
                             <div style="color: red; text-align: center; width:100%; ">
-                                <?= $message; ?>
+                                <?=$message;?>
                             </div>
 
                             <?php
-                        }
-                        ?>
-                        <form id="formLogin" method="post" action="<?= base_url() ?>Login/login">
+}
+?>
+                        <form id="formLogin" method="post" action="<?=base_url()?>Login/login">
                             <input type="text" name="username" value="" class="form_input required" placeholder="username" data-role="none" />
                             <input type="password" name="password" id="password-field" value="" class="form_input required" placeholder="password" data-role="none" />
                             <!--<span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password">dsds</span>-->
@@ -76,19 +82,15 @@
         <script>
             $(function () {
                 $("#alert").hide();
-//                $(".toggle-password").click(function () {
-//
-//                    $(this).toggleClass("fa-eye fa-eye-slash");
-//                    var input = $($(this).attr("toggle"));
-//                    if (input.attr("type") == "password") {
-//                        input.attr("type", "text");
-//                    } else {
-//                        input.attr("type", "password");
-//                    }
-//                });
+                var firstReload = localStorage.getItem('firstReload');
+                if(firstReload == '1'){
+                    localStorage.setItem('firstReload', 0);
+                }
+                localStorage.setItem('firstReload', 0);                
             });
 
             function loginForm() {
+                localStorage.setItem('firstReload', 0);
                 var formData = new FormData($("#formLogin")[0]);
                 $('#formLogin').validate({
                     rules: {
@@ -101,7 +103,7 @@
                     },
                     submitHandler: function (form) {
                         $.ajax({
-                            url: "<?= base_url() ?>Login/login",
+                            url: "<?=base_url()?>Login/login",
                             type: "POST",
                             data: formData,
                             processData: false,
@@ -110,7 +112,7 @@
                             success: function (data) {
                                 if (data.code == "200") {
                                     alert(code);
-                                    window.location.href = "<?= base_url() ?>Dashboard";
+                                    window.location.href = "<?=base_url()?>Dashboard";
                                 } else {
                                     $("#alert").show();
                                     $("#alert").html(data.message);
@@ -121,11 +123,5 @@
                 });
             }
         </script>
-        <script src="<?= base_url() ?>assets/js/jquery.min.js"></script>
-        <script src="<?= base_url() ?>assets/js/jquery.mobile-1.4.5.min.js"></script>
-        <script src="<?= base_url() ?>assets/js/jquery.validate.min.js" type="text/javascript"></script>
-        <script type="text/javascript" src="<?= base_url() ?>assets/js/email.js"></script>
-        <script type="text/javascript" src="<?= base_url() ?>assets/js/jquery.swipebox.js"></script>
-        <script src="<?= base_url() ?>assets/js/jquery.mobile-custom.js"></script>
     </body>
 </html>
