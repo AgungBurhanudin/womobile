@@ -17,7 +17,7 @@ if (empty($wedding) || $wedding->prewed == "") {
 ?>
 
         </div>
-        <div class="labelCountDown" id="countdownLabel">-- Hari -- Jam</div>        
+        <div class="labelCountDown" id="countdownLabel">-- Hari -- Jam</div>
         <!--        <div class="heart">
 
                 </div>-->
@@ -149,10 +149,10 @@ if (!empty($logs)) {
         $(function () {
             var firstReload = localStorage.getItem('firstReload');
             if(firstReload == 0){
-                alert("oke");
+                // alert("oke");
                 window.location.reload();
                 // setTimeout(window.location.reload(), 5000);
                 localStorage.setItem('firstReload', 1);
-            }         
+            }
         });
 </script>
