@@ -69,7 +69,7 @@
                         <select class="form_input" data-role="none" name="bayar_oleh" id="bayar_oleh">
                             <option value="">-- Pilih Pembayaran --</option>
                             <option value="wo">Mahkota / Tiara</option>
-                            <option value="sendiri">Sendiri</option>
+                            <option value="sendiri">Langsung Ke Vendor</option>
                         </select>
                     </div>
                 </div>

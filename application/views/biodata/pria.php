@@ -78,7 +78,7 @@ if (!empty($pria)) {
                 </div>
                 <div>
                     <label class="control-label">Alamat setelah nikah Pengantin Pria</label>
-                    <input name="alamat_nikah_pria" id="alamat_nikah_pria" type="text" required="required" class="form_input" data-role="none" />
+                    <input name="alamat_nikah_pria" id="alamat_nikah_pria" type="text" class="form_input" data-role="none" />
                 </div>
                 <div>
                     <label class="control-label">Tempat Lahir Pengantin Pria</label>
@@ -131,7 +131,7 @@ if (!empty($pria)) {
                 </div>
                 <div>
                     <label class="control-label">Akun Facebook Pengantin Pria</label>
-                    <input name="sosmed_pria" id="sosmed_pria" type="text" required="required" class="form_input" data-role="none" />
+                    <input name="sosmed_pria" id="sosmed_pria" type="text" class="form_input" data-role="none" />
                 </div>
                 <div>
                     <label class="control-label">Akun Instagram Pengantin Pria</label>

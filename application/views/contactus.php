@@ -14,13 +14,13 @@
 
             <div class="contact_info">
                 <h4><?= $company->nama ?></h4>
-                Adress: <?= $company->alamat ?><br>
+                Address: <?= $company->alamat ?><br>
                 Email: <?= $company->email ?> <br>
                 Mobile: <?= $company->notelp ?>
             </div> 
 
-            <div class="call_button"><a href="tel:+<?= $company->notelp ?>" class="external ui-link">Call Us Now!</a></div>  <br>
-            <div class="wa_button"><a href="https://wa.me/<?= $company->notelp ?>" class="external ui-link">Message with WhatsApp</a></div>  
+            <div class="call_button"><a target="_blank" href="tel:+<?= $company->notelp ?>" class="external ui-link">Call Us Now!</a></div>  <br>
+            <div class="wa_button"><a target="_blank" href="https://wa.me/<?= $company->notelp ?>" class="external ui-link">Message with WhatsApp</a></div>  
             <hr>
 <!--            <h3 id="Note">Send Message</h3>
             <div class="contactform">

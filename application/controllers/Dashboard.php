@@ -333,6 +333,9 @@ class Dashboard extends CI_Controller {
         $data['status'] = 0;
         
         $this->db->insert('payment', $data);
+
+        $key_vendor = $_POST['id_payment_pengantin'];
+        // $this->db->query("UPDATE vendor_pengantin SET terbayar = terbayar + " . $_POST['terbayar'] . " WHERE id = $key_vendor");
         $this->wedding_model->insertLog($id_wedding, "Payment vendor " . $_POST['nama_vendor_payment']);
         $result = array(
             'code' => 200

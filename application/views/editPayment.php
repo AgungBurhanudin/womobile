@@ -54,8 +54,8 @@
                     <div class="col-md-9">
                         <select class="form_input" data-role="none" name="dibayarke" id="dibayarke">
                             <option value="">-- Di Bayar ke --</option>
-                            <option value="WO">WO</option>
-                            <option value="VENDOR">VENDOR</option>
+                            <option value="WO">Mahkota / Tiara</option>
+                            <option value="VENDOR">Langsung ke vendor</option>
                         </select>
                     </div>
                 </div>

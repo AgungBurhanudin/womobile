@@ -71,7 +71,7 @@ if (!empty($wanita)) {
 
 
                 <label class="control-label">Alamat setelah nikah Pengantin Wanita</label>
-                <input name="alamat_nikah_wanita" id="alamat_nikah_wanita" type="text"  class="form_input required" data-role="none" />
+                <input name="alamat_nikah_wanita" id="alamat_nikah_wanita" type="text"  class="form_input" data-role="none" />
 
 
                 <label class="control-label">Tempat Lahir Pengantin Wanita</label>
@@ -121,7 +121,7 @@ if (!empty($wanita)) {
 
 
                 <label class="control-label">Akun Facebook Pengantin Wanita</label>
-                <input name="sosmed_wanita" id="sosmed_wanita" type="text"  class="form_input required" data-role="none" />
+                <input name="sosmed_wanita" id="sosmed_wanita" type="text"  class="form_input" data-role="none" />
 
                 <label class="control-label">Akun Instagram Pengantin Wanita</label>
                 <input name="instagram_wanita" id="instagram_wanita" type="text"  class="form_input required" data-role="none" />
