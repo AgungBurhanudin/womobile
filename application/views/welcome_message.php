@@ -17,12 +17,12 @@
         <link type="text/css" rel="stylesheet" href="<?= base_url() ?>assets/css/colors/yellow.css" />
         <link type="text/css" rel="stylesheet" href="<?= base_url() ?>assets/css/swipebox.css" />
     </head>
-    <body>
+    <body style="background: url('assets/images/splashscreen.jpg'); background-size:100% 100%">
 
-        <div data-role="page" id="homepage" data-theme="b">
+        <div>
 
-            <div role="main" class="ui-content">
-
+            <div >
+		<!--
                 <div class="logo_container">
                     <div class="logo">
                         <img src="<?= base_url() ?>assets/images/logo_mahkota.png" alt="biotic" title="biotic" />
@@ -30,6 +30,7 @@
                         <span><h4>Wedding Organizer<br> Solution</h4></span>                        
                     </div>                     
                 </div>
+		-->
                 <a href="<?= base_url() ?>Login">
                     <div class="slide_info">SKIP</div>
                 </a>
@@ -45,8 +46,8 @@
         <script src="<?= base_url() ?>assets/js/jquery.mobile-custom.js"></script>
         <script>
             setTimeout(function () {
-                window.location = "<?= base_url() ?>Login";
-            }, 2000)
+               window.location = "<?= base_url() ?>Login";
+            }, 3000)
         </script>
     </body>
 </html>
