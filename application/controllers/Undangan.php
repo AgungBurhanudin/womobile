@@ -30,7 +30,8 @@ class Undangan extends CI_Controller {
     public function addUndangan() {
         $id = $this->id_wedding;
         $data = array(
-            'id_wedding' => $id
+            'id_wedding' => $id,
+            'kategori' => $this->db->query("SELECT * FROM kategori WHERE status = '1'")->result(),
         );
         render('addUndangan', $data);
     }

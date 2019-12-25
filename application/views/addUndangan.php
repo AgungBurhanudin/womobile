@@ -31,10 +31,17 @@
                             <div class="col-md-9">
                                 <select class="form_input" data-role="none" name="tipe_undangan" id="tipe_undangan">
                                     <option value="">-- Pilih Tipe Undangan --</option>
-                                    <option value="Umum">Umum</option>
+                                    <?php
+                                    foreach($kategori as $kat){
+                                    ?>
+                                    <option value="<?= $kat->kategori ?>"><?= $kat->kategori ?></option>
+                                    <?php 
+                                    }
+                                    ?>
+                                    <!-- <option value="Umum">Umum</option>
                                     <option value="Teman">Teman</option>
                                     <option value="Keluarga">Keluarga</option>
-                                    <option value="VIP">VIP</option>
+                                    <option value="VIP">VIP</option> -->
                                 </select>
                             </div>
                         </div>

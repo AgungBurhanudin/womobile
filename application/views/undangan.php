@@ -21,7 +21,7 @@
                             <div class="feat_small_details">
                                 <?= $val->nama ?>
                             </div>
-                            <div class="view_more" style=" position: absolute; right: 10px;margin-top: -10px; margin-bottom: 0"><a href="#" onclick="deleteUndangan('<?= $val->id ?>')" data-transition="slidedown" class="ui-link"><img src="<?= base_url() ?>assets/images/icons/black/menu_close.png" alt="" title="Delete Undangan"></a>
+                            <div class="view_more" style=" position: absolute; right: 10px;margin-top: -10px; margin-bottom: 0"><a href="#" onclick="deleteUndangan('<?= $val->id ?>')" data-transition="slidedown" class="ui-link"><img src="<?= base_url() ?>assets/images/icons/black/trash.png" alt="" title="Delete Undangan"></a>
                             </div>
                         </li>
                         <?php

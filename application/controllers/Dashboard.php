@@ -26,7 +26,7 @@ class Dashboard extends CI_Controller {
             'logs' => $this->db->query("SELECT a.*,b.user_real_name  FROM log_aktivitas a "
                     . "LEFT JOIN app_user b "
                     . "ON a.id_user = b.user_id "
-                    . "WHERE a.id_wedding = '$this->id_wedding' AND b.user_group_id = '37' ORDER BY datetime DESC LIMIT 5")->result(),
+                    . "WHERE a.id_wedding = '$this->id_wedding' AND b.user_group_id = '37' GROUP BY a.deskripsi ORDER BY datetime DESC LIMIT 5")->result(),
         );
         render('dashboard', $data);
     }
@@ -344,9 +344,11 @@ class Dashboard extends CI_Controller {
     }
 
     public function contactus() {
+        $id_wedding = $this->id_wedding;
         $id = $this->id_company;
         $data = array(
             'company' => $this->db->query("SELECT * FROM company WHERE id = '$id'")->row(),
+            'wedding' => $this->db->query("SELECT nama_pic, wa_pic FROM wedding WHERE id = '$id_wedding'")->row(),
         );
         render('contactus', $data);
     }
@@ -365,7 +367,7 @@ class Dashboard extends CI_Controller {
             'log' => $this->db->query("SELECT a.*,b.user_real_name  FROM log_aktivitas a "
                     . "LEFT JOIN app_user b "
                     . "ON a.id_user = b.user_id "
-                    . "WHERE a.id_wedding = '$id' ORDER BY datetime DESC LIMIT 10")->result(),
+                    . "WHERE a.id_wedding = '$id' GROUP BY a.deskripsi ORDER BY datetime DESC LIMIT 10")->result(),
         );
         render('log', $data);
     }

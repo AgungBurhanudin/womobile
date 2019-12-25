@@ -23,7 +23,7 @@
                                     <?= $val->biaya ?>
                                 </a>
                             </div>
-                            <div class="view_more"><a href="#" onclick="deleteVendor('<?= $val->id ?>')" data-transition="slidedown" class="ui-link"><img src="<?= base_url()?>assets/images/icons/black/menu_close.png" alt="" title="Delete Vendor"></a></div>
+                            <div class="view_more"><a href="#" onclick="deleteVendor('<?= $val->id ?>')" data-transition="slidedown" class="ui-link"><img src="<?= base_url()?>assets/images/icons/black/trash.png" alt="" title="Delete Vendor"></a></div>
 
                         </li> 
 
