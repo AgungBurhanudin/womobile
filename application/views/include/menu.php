@@ -15,6 +15,7 @@ $dataWedding = $this->wedding_model->getOneData($id_wedding);
             <li><a href="<?= base_url() ?>Panitia" data-transition="slidefade"><img src="<?= base_url() ?>assets/images/icons/white/team.png" alt="" title="" /><span>Panitia</span></a></li>
             <li><a href="<?= base_url() ?>Tambahan" data-transition="slidefade"><img src="<?= base_url() ?>assets/images/icons/white/briefcase.png" alt="" title="" /><span>Tambahan</span></a></li>
             <li><a href="<?= base_url() ?>Undangan" data-transition="slidefade"><img src="<?= base_url() ?>assets/images/icons/white/heart.png" alt="" title="" /><span>Undangan</span></a></li>
+            <li><a href="<?= base_url() ?>Gallery" data-transition="slidefade"><img src="<?= base_url() ?>assets/images/icons/black/gallery.png" alt="" title="" /><span>Upload Foto</span></a></li>
             <li><a href="<?= base_url() ?>Dashboard/log" data-transition="slidefade"><img src="<?= base_url() ?>assets/images/icons/white/support.png" alt="" title="" /><span>Log Aktivitas</span></a></li>
             <!-- <li><a href="<?= base_url() ?>Cetak" data-transition="slidefade"><img src="<?= base_url() ?>assets/images/icons/white/message.png" alt="" title="" /><span>Buku Acara</span></a></li> -->
         </ul>

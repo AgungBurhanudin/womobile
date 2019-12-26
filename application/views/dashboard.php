@@ -1,5 +1,9 @@
-
-
+<style>
+.icon-label{
+    color: #000 !important;
+    font-weight: bold !important;
+}
+</style>
 <div role="main" class="ui-content">
     <div class="pages_maincontent">
         <div class="featured_image">

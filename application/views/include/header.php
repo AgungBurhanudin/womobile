@@ -126,7 +126,7 @@
                     border: 1px solid #e7e7e7;
                 }
                 input[type="file"] {
-                    display: none;
+                    display: block;
                 }
                 .custom-file-upload {
                     border: 1px solid #ccc;

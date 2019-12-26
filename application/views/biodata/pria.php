@@ -58,9 +58,9 @@ if (!empty($pria)) {
                         <label class="btn btn-upload btn-primary">
                             Foto Pengantin Pria
                             <input type="file" id="file-upload-pria" name="foto_pria" class="" data-role="none" value="Upload Photo" accept="image/png, image/jpeg, image/gif" >
-                            <label for="file-upload-pria" class="custom-file-upload">
+                            <!-- <label for="file-upload-pria" class="custom-file-upload">
                                 <i class="fa fa-cloud-upload"></i> Upload Foto
-                            </label>
+                            </label> -->
                         </label>
                     </div>
                 </div>

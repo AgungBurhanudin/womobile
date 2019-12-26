@@ -54,9 +54,9 @@ if (!empty($wanita)) {
                 <input type="hidden" class="id_wedding" name="gender_wanita" value="<?= $gender ?>">
                 <label class="control-label">Foto Pengantin Wanita</label>
                 <input type="file" class="" id="file-upload-wanita" name="foto_wanita" data-role="none" value="Upload Photo" accept="image/png, image/jpeg, image/gif" data-role="file"  />
-                <label for="file-upload-wanita" class="custom-file-upload">
+                <!-- <label for="file-upload-wanita" class="custom-file-upload">
                     <i class="fa fa-cloud-upload"></i> Upload Foto
-                </label>
+                </label> -->
 
                 <label class="control-label">Nama Lengkap Pengantin Wanita</label>
                 <input name="nama_lengkap_wanita" id="nama_lengkap_wanita" type="text"  class="form_input required" data-role="none" placeholder="" />

@@ -69,9 +69,9 @@
                     <label class="col-md-3 col-form-label">Bukti Pembayaran</label>
                     <div class="col-md-9">
                         <input name="bukti" id="bukti" type="file" required="required" class="form_input" data-role="none" />
-                        <label for="bukti" class="custom-file-upload">
+                        <!-- <label for="bukti" class="custom-file-upload">
                             <i class="fa fa-cloud-upload"></i> Upload Bukti
-                        </label>
+                        </label> -->
                         <br>
                         <span id="bukti_download"></span>
                     </div>
