@@ -6,7 +6,10 @@ if (!defined('BASEPATH'))
 class Welcome extends CI_Controller {
 
     public function index() {
-        $this->load->view('welcome_message');
+        $data['splashscreen'] = getSetting('splashscreen');
+        // print_r($data);
+        // exit();
+        $this->load->view('welcome_message', $data);
         //redirect(base_url() . "Login");
     }
 

@@ -19,6 +19,13 @@ function getAlamat(){
     return $data;
 }
 
+function getSetting($key){
+    $CI = & get_instance();
+    $q = "SELECT setting_value FROM app_setting WHERE setting_key='$key'";
+    $data = $CI->db->query($q)->row();
+    return $data->setting_value;
+}
+
 
 
 /* End of file websetting_helper.php */

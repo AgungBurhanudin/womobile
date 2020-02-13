@@ -17,7 +17,7 @@
         <link type="text/css" rel="stylesheet" href="<?= base_url() ?>assets/css/colors/yellow.css" />
         <link type="text/css" rel="stylesheet" href="<?= base_url() ?>assets/css/swipebox.css" />
     </head>
-    <body style="background: url('assets/images/splashscreen.jpg'); background-size:100% 100%">
+    <body style="background: url('../files/splashscreen/<?= $splashscreen ?>'); background-size:100% 100%">
 
         <div>
 
